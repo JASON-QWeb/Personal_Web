@@ -2,13 +2,14 @@
 
 ## 目标
 
-这个站点仍然是静态展示页，不引入构建工具或框架。当前架构的目标是把职责拆清楚：HTML 放内容和组件挂点，CSS 按层级管理视觉，JS 只处理页面状态、语言切换和开场动画启动。
+这个站点仍然是静态展示页，不引入前端框架。项目使用 Vite 作为开发和打包工具：开发时提供热加载，生产构建输出普通静态文件到 `dist/`，部署时只需要托管构建产物。当前架构的目标是把职责拆清楚：HTML 放内容和组件挂点，CSS 按层级管理视觉，JS 只处理页面状态、语言切换和开场动画启动。
 
 ## 目录职责
 
 | 路径 | 职责 |
 | --- | --- |
 | `index.html` | 页面语义结构、首页内容、项目内容、loader 结构。 |
+| `package.json` | Vite 本地开发、生产构建和构建预览脚本。 |
 | `styles.css` | CSS 入口文件，只维护导入顺序。 |
 | `styles/tokens.css` | 颜色、缓动、间距、背景图、开场动画时间变量。 |
 | `styles/sections/` | 页面级板块样式，例如首页和项目分屏。 |
@@ -17,8 +18,10 @@
 | `scripts/site-config.js` | 项目清单、双语文案、开场动画配置。 |
 | `scripts/intro-controller.js` | 重置并添加开场状态类、处理重新播放和结束状态。 |
 | `scripts/site.js` | 页面启动入口，处理默认英文、导航语言切换，并同步项目 section 的数据属性。 |
+| `scripts/main.js` | Vite 模块入口，按顺序加载站点脚本，确保生产构建可以打包 JS。 |
+| `assets/home-bg-warm-studio.jpg` | 本地首屏背景图，避免运行时依赖远程图片。 |
 | `assets/logo-unsw.png` / `assets/logo-samsung.png` | 首页资料卡时间线使用的学校和公司 logo，均来自官方网站资源。 |
-| `assets/logo-*.svg` | 首页技术栈使用的本地 logo 资产，例如 MCP、LangGraph、PyTorch、AI SDK、OpenCode、Go。RAG、Skills、CI/CD 属于能力项而不是稳定独立品牌标识，页面使用文字 badge。 |
+| `assets/logo-*.svg` | 首页技术栈使用的本地 logo 资产，例如 MCP、LangGraph、PyTorch、AI SDK、Go 和常见 devicon 标识。RAG、Workflow、Skills、CI/CD 属于能力项而不是稳定独立品牌标识，页面使用文字 badge。 |
 | `docs/` | 中文说明文档。README 另外保留中英文两份。 |
 
 ## 页面板块规范

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="JasonQ builds AI-powered products and enterprise-ready systems across product, design, full-stack engineering, and AI architecture.">
     <title>JasonQ | Product-minded AI Builder</title>
+    <link rel="preload" as="image" href="assets/home-bg-warm-studio.jpg" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -12,8 +13,10 @@
       <section class="home-section" id="about" data-section="home" aria-label="About JasonQ" data-i18n-attr="aria-label:home.aria">
         <img
           class="home-bg"
-          src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=2400&q=86"
+          src="assets/home-bg-warm-studio.jpg"
           alt=""
+          fetchpriority="high"
+          decoding="async"
         >
         <div class="home-shade" aria-hidden="true"></div>
 
@@ -77,48 +80,48 @@
               <div class="stack-group">
                 <h2 data-i18n="stack.ai">AI Stack</h2>
                 <ul class="logo-list logo-list--ai" aria-label="AI stack">
-                  <li><img src="assets/logo-pytorch.svg" alt="PyTorch"><span>PyTorch</span></li>
-                  <li><img src="assets/logo-langgraph.svg" alt="LangGraph"><span>LangGraph</span></li>
-                  <li><span class="logo-fallback" aria-hidden="true">RAG</span><span>RAG</span></li>
-                  <li><img class="logo-wordmark logo-wordmark--ai-sdk" src="assets/logo-ai-sdk.svg" alt="AI SDK"><span>AI SDK</span></li>
-                  <li><span class="logo-crop logo-crop--mcp"><img src="assets/logo-mcp.svg" alt="MCP"></span><span>MCP</span></li>
-                  <li><span class="logo-fallback" aria-hidden="true">SK</span><span>Skills</span></li>
-                  <li><img class="logo-opencode" src="assets/logo-opencode.svg" alt="OpenCode"><span>OpenCode</span></li>
+                  <li><img src="assets/logo-pytorch.svg" alt="PyTorch" title="PyTorch"><span class="logo-label">PyTorch</span></li>
+                  <li><img src="assets/logo-langgraph.svg" alt="LangGraph" title="LangGraph"><span class="logo-label">LangGraph</span></li>
+                  <li><span class="logo-fallback" title="RAG">RAG</span><span class="logo-label">RAG</span></li>
+                  <li><span class="logo-fallback" title="Workflow">WF</span><span class="logo-label">Workflow</span></li>
+                  <li><img class="logo-wordmark logo-wordmark--ai-sdk" src="assets/logo-ai-sdk.svg" alt="AI SDK" title="AI SDK"><span class="logo-label">AI SDK</span></li>
+                  <li><span class="logo-crop logo-crop--mcp" title="MCP"><img src="assets/logo-mcp.svg" alt="MCP"></span><span class="logo-label">MCP</span></li>
+                  <li><span class="logo-fallback" title="Skills">SK</span><span class="logo-label">Skills</span></li>
                 </ul>
               </div>
 
               <div class="stack-group">
                 <h2 data-i18n="stack.frontend">Frontend</h2>
                 <ul class="logo-list logo-list--frontend" aria-label="Frontend stack">
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><span>JavaScript</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"><span>TypeScript</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"><span>React</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular"><span>Angular</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js"><span>Next.js</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS"><span>Tailwind</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"><span>Figma</span></li>
+                  <li><img src="assets/logo-javascript.svg" alt="JavaScript"><span>JavaScript</span></li>
+                  <li><img src="assets/logo-typescript.svg" alt="TypeScript"><span>TypeScript</span></li>
+                  <li><img src="assets/logo-react.svg" alt="React"><span>React</span></li>
+                  <li><img src="assets/logo-angular.svg" alt="Angular"><span>Angular</span></li>
+                  <li><img src="assets/logo-nextjs.svg" alt="Next.js"><span>Next.js</span></li>
+                  <li><img src="assets/logo-tailwindcss.svg" alt="Tailwind CSS"><span>Tailwind</span></li>
+                  <li><img src="assets/logo-figma.svg" alt="Figma"><span>Figma</span></li>
                 </ul>
               </div>
 
               <div class="stack-group">
                 <h2 data-i18n="stack.backend">Backend</h2>
                 <ul class="logo-list logo-list--backend" aria-label="Backend stack">
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"><span>Node.js</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><span>Python</span></li>
+                  <li><img src="assets/logo-nodejs.svg" alt="Node.js"><span>Node.js</span></li>
+                  <li><img src="assets/logo-python.svg" alt="Python"><span>Python</span></li>
                   <li><img class="logo-wordmark logo-wordmark--go" src="assets/logo-go.svg" alt="Go"><span>Go</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg" alt="Rust"><span>Rust</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><span>Postgres</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis"><span>Redis</span></li>
+                  <li><img src="assets/logo-rust.svg" alt="Rust"><span>Rust</span></li>
+                  <li><img src="assets/logo-postgresql.svg" alt="PostgreSQL"><span>Postgres</span></li>
+                  <li><img src="assets/logo-redis.svg" alt="Redis"><span>Redis</span></li>
                 </ul>
               </div>
 
               <div class="stack-group">
                 <h2 data-i18n="stack.delivery">Delivery</h2>
                 <ul class="logo-list logo-list--delivery" aria-label="DevOps stack">
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"><span>Docker</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"><span>Linux</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx"><span>Nginx</span></li>
-                  <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" alt="GitHub Actions"><span>Actions</span></li>
+                  <li><img src="assets/logo-docker.svg" alt="Docker"><span>Docker</span></li>
+                  <li><img src="assets/logo-linux.svg" alt="Linux"><span>Linux</span></li>
+                  <li><img src="assets/logo-nginx.svg" alt="Nginx"><span>Nginx</span></li>
+                  <li><img src="assets/logo-githubactions.svg" alt="GitHub Actions"><span>Actions</span></li>
                   <li><span class="logo-fallback logo-fallback--wide" aria-hidden="true">CI/CD</span><span>CI/CD</span></li>
                 </ul>
               </div>
@@ -239,8 +242,6 @@
       <div class="loader-panel loader-panel--bottom"></div>
     </div>
 
-    <script src="scripts/site-config.js" defer></script>
-    <script src="scripts/intro-controller.js" defer></script>
-    <script src="scripts/site.js" defer></script>
+    <script type="module" src="scripts/main.js"></script>
   </body>
 </html>
