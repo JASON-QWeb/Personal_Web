@@ -63,7 +63,7 @@
 
 - `.loader-black`：保留的过渡层占位，当前关闭，页面直接进入黄色开场。
 - `.loader-field`：黄色底色。
-- `.loader-window`：背景横条和背景展开层。
+- `.loader-window`：背景横条和背景展开层，内部图片与首页 `.home-bg` 使用同一个本地背景资源。
 - `.loader-meta`：`Product Builder`、`Design Engineer`、`AI Architect` 三处辅助文字。
 - `.loader-title`：第一阶段 `Product-minded AI Builder` 主标题。
 - `.loader-logo--compact`：第二阶段 `JasonQ` 标识，后续由 `Jason` 和 `Q` 独立变形。

@@ -10,8 +10,6 @@
   --ease-in-out: cubic-bezier(.55, 0, .1, 1);
   --ease-out: cubic-bezier(.22, .75, .12, 1);
   --pad: clamp(14px, 1.2vw, 18px);
-  --home-bg-url: url("../assets/home-bg-warm-studio.jpg");
-  --home-bg: linear-gradient(90deg, rgba(10, 16, 17, .58), rgba(10, 16, 17, .24)), var(--home-bg-url);
   --intro-title-start: .12s;
   --intro-brand-start: 1.42s;
   --intro-morph-start: 2.48s;
