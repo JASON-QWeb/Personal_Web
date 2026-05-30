@@ -42,7 +42,7 @@ npm run build
 - `assets/avatar.jpg` - profile avatar converted from the original HEIC image.
 - `assets/logo-unsw.png` / `assets/logo-samsung.png` - local education and company logo assets copied from official website assets.
 - `assets/home-bg-warm-studio.jpg` - local first-screen background image.
-- `assets/logo-*.svg` - local logo assets for official/mainstream stack marks such as MCP, LangGraph, PyTorch, AI SDK, Go, and common devicon marks. RAG, Workflow, Skills, and CI/CD use text badges because they are capabilities rather than stable standalone brand marks.
+- `assets/logo-*.svg` - local logo assets for official/mainstream stack marks such as MCP, LangGraph, PyTorch, AI SDK, Go, Workflow, Skills, Vercel, and common devicon marks. RAG and CI/CD use text badges because they are capabilities rather than stable standalone brand marks.
 - `docs/` - Chinese documentation for animation and architecture.
 
 ## Notes

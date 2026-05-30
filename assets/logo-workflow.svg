@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow</title>
+  <desc id="desc">Connected workflow automation nodes icon</desc>
+  <g fill="none" fill-rule="evenodd">
+    <path stroke="#B8B1D8" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M68 213v224h376V78H75" />
+    <path stroke="#FFC540" stroke-linecap="round" stroke-width="16" d="M209 40h14m29 0h14m29 0h14M209 472h14m29 0h14m29 0h14" />
+    <path fill="#8174C5" d="m70 0 18 13 22-5 18 20 24 1 9 25 22 12-4 26 12 22-17 20 1 25-25 11-13 22-26-4-22 13-20-18-25 1-12-24-22-13 5-26-13-22 18-20-1-25 24-11L70 0Z" />
+    <circle cx="71" cy="69" r="34" fill="#D8D2EF" />
+    <circle cx="71" cy="69" r="16" fill="#fff" />
+    <path fill="#8174C5" d="m429 320 18 13 22-5 18 20 24 1 9 25 22 12-4 26 12 22-17 20 1 25-25 11-13 22-26-4-22 13-20-18-25 1-12-24-22-13 5-26-13-22 18-20-1-25 24-11 7-25Z" transform="translate(-1 -1)" />
+    <circle cx="443" cy="443" r="34" fill="#D8D2EF" />
+    <circle cx="443" cy="443" r="16" fill="#fff" />
+    <circle cx="443" cy="68" r="68" fill="#FFD462" />
+    <path fill="#FFC540" d="M472 7c24 11 40 35 40 63 0 37-30 67-67 67-12 0-24-3-34-9 40-5 71-39 71-80 0-15-4-29-10-41Z" opacity=".55" />
+    <circle cx="69" cy="444" r="68" fill="#FF6F80" />
+    <path fill="#FA5D70" d="M98 383c24 11 40 35 40 63 0 37-30 67-67 67-12 0-24-3-34-9 40-5 71-39 71-80 0-15-4-29-10-41Z" opacity=".55" />
+    <path fill="#5CB3F0" d="M179 152h132c12 0 22 10 22 22v136l-48 50H201c-12 0-22-10-22-22V152Z" />
+    <path fill="#8CC9F4" d="M179 152h121v121L213 360h-12c-12 0-22-10-22-22V152Z" />
+    <path fill="#45A4E8" d="M286 360v-51c0-13 11-24 24-24h23l-47 75Z" opacity=".8" />
+    <rect width="116" height="15" x="204" y="182" fill="#fff" rx="7.5" />
+    <rect width="101" height="15" x="204" y="218" fill="#fff" rx="7.5" />
+    <rect width="101" height="15" x="204" y="253" fill="#fff" rx="7.5" />
+    <rect width="69" height="15" x="204" y="317" fill="#fff" rx="7.5" />
+    <rect width="57" height="15" x="249" y="282" fill="#fff" rx="7.5" />
+    <rect width="25" height="15" x="204" y="282" fill="#fff" rx="7.5" />
+    <rect width="31" height="15" x="277" y="182" fill="#fff" rx="7.5" />
+    <rect width="116" height="60" x="387" y="225" fill="#13D6A0" rx="8" />
+    <rect width="67" height="15" x="410" y="248" fill="#fff" rx="7.5" />
+    <g stroke="#fff" stroke-linecap="round" stroke-width="15">
+      <path d="M414 54h62" />
+      <path d="M414 85h62" />
+      <path d="M36 427h62" />
+      <path d="M36 458h62" />
+    </g>
+    <path fill="#8174C5" d="m68 173 36 36H80v198H56V209H32l36-36Z" />
+  </g>
+</svg>

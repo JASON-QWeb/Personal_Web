@@ -135,6 +135,27 @@ html[data-language="zh-CN"] .lang-toggle__option[data-lang-code="zh-CN"] {
   animation: cueArrow .9s var(--ease-in-out) .2s infinite alternate;
 }
 
+.is-final-section-active .scroll-cue {
+  visibility: hidden;
+  opacity: 0 !important;
+  pointer-events: none;
+  animation: none;
+}
+
+@media (max-width: 640px) {
+  .head-lang {
+    transition:
+      opacity .22s var(--ease-in-out),
+      visibility .22s var(--ease-in-out);
+  }
+
+  .is-mobile-scrolled .head-lang {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
 @keyframes headIn {
   to {
     opacity: 1;

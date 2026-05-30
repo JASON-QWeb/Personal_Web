@@ -42,7 +42,7 @@ npm run build
 - `assets/avatar.jpg`：由原始 HEIC 图片转换得到的主页头像。
 - `assets/logo-unsw.png` / `assets/logo-samsung.png`：资料卡时间线使用的学校和公司本地 logo 资产，均来自官方网站资源。
 - `assets/home-bg-warm-studio.jpg`：本地首屏背景图。
-- `assets/logo-*.svg`：本地 logo 资产，包含 MCP、LangGraph、PyTorch、AI SDK、Go 和常见 devicon 标识等官方或主流图标。RAG、Workflow、Skills、CI/CD 属于能力项而不是稳定独立品牌标识，页面里使用文字 badge。
+- `assets/logo-*.svg`：本地 logo 资产，包含 MCP、LangGraph、PyTorch、AI SDK、Go、Workflow、Skills、Vercel 和常见 devicon 标识等官方或主流图标。RAG、CI/CD 属于能力项而不是稳定独立品牌标识，页面里使用文字 badge。
 - `docs/`：中文动画和架构文档。
 
 ## 说明
