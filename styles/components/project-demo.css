@@ -1,0 +1,112 @@
+.project-demo {
+  position: relative;
+  min-height: min(62vh, 560px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-window,
+.phone-demo,
+.terminal-demo {
+  width: min(680px, 100%);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 34px 90px rgba(0, 0, 0, .26);
+}
+
+.demo-window {
+  padding: 18px;
+}
+
+.demo-bar {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 18px;
+}
+
+.demo-bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+.demo-bar span:nth-child(2) {
+  background: var(--accent);
+}
+
+.demo-bar span:nth-child(3) {
+  background: var(--green);
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.metric-card,
+.chart-card {
+  min-height: 160px;
+  padding: 18px;
+  background: #edf1ef;
+}
+
+.metric-card strong {
+  display: block;
+  font-size: clamp(48px, 6vw, 86px);
+  line-height: .9;
+}
+
+.metric-card span {
+  display: block;
+  margin-top: 12px;
+}
+
+.chart-card {
+  grid-column: 1 / -1;
+  min-height: 260px;
+  background:
+    linear-gradient(135deg, transparent 22%, rgba(5, 5, 5, .08) 22%, rgba(5, 5, 5, .08) 24%, transparent 24%),
+    linear-gradient(90deg, var(--accent) 0 24%, var(--green) 24% 52%, var(--coral) 52% 74%, #181d1c 74%);
+}
+
+.phone-demo {
+  width: min(330px, 78vw);
+  min-height: 620px;
+  padding: 18px;
+  border-radius: 34px;
+  background: #101312;
+}
+
+.phone-top {
+  height: 220px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--accent), #ffffff 72%);
+}
+
+.phone-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.phone-list span {
+  height: 66px;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.terminal-demo {
+  padding: clamp(22px, 4vw, 44px);
+  background: #050505;
+  color: var(--accent);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: clamp(17px, 2vw, 24px);
+  line-height: 1.6;
+}
+
+.terminal-demo p {
+  margin: 0;
+}

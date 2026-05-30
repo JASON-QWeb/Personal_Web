@@ -1,0 +1,285 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--black);
+  opacity: 1;
+}
+
+.is-loaded .loader {
+  animation: loaderGone .28s linear var(--intro-end) both;
+}
+
+.loader-black,
+.loader-field,
+.loader-panel,
+.loader-window {
+  position: absolute;
+  inset: 0;
+}
+
+.loader-black {
+  display: none;
+}
+
+.loader-field {
+  z-index: 1;
+  background: var(--accent);
+}
+
+.is-loaded .loader-field {
+  animation: fieldOff .01s linear var(--intro-end) both;
+}
+
+.loader-panel {
+  z-index: 4;
+  background: var(--accent);
+  transform: translateY(0);
+}
+
+.loader-panel--top {
+  bottom: auto;
+  height: 50%;
+  transform-origin: center bottom;
+}
+
+.loader-panel--bottom {
+  top: auto;
+  height: 50%;
+  transform-origin: center top;
+}
+
+.is-loaded .loader-panel--top {
+  animation: topPanelOut var(--intro-open-duration) var(--ease-in-out) var(--intro-open-start) both;
+}
+
+.is-loaded .loader-panel--bottom {
+  animation: bottomPanelOut var(--intro-open-duration) var(--ease-in-out) var(--intro-open-start) both;
+}
+
+.loader-window {
+  z-index: 6;
+  background: var(--home-bg);
+  background-size: cover;
+  background-position: center;
+  clip-path: inset(calc(50% - var(--intro-strip-half)) 100% calc(50% - var(--intro-strip-half)) 0);
+}
+
+.is-loaded .loader-window {
+  animation:
+    windowScan .58s var(--ease-in-out) var(--intro-scan-start) both,
+    windowOpen var(--intro-open-duration) var(--ease-in-out) var(--intro-open-start) forwards;
+}
+
+.loader-meta {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  font-weight: 700;
+  font-size: clamp(15px, 1.1vw, 20px);
+  line-height: 1.2;
+}
+
+.loader-meta span {
+  position: absolute;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.loader-meta span:nth-child(1) {
+  top: 16.5vh;
+  left: 8.3vw;
+}
+
+.loader-meta span:nth-child(2) {
+  left: 22.3vw;
+  bottom: 14.6vh;
+}
+
+.loader-meta span:nth-child(3) {
+  right: 8.3vw;
+  bottom: 26.2vh;
+}
+
+.is-loaded .loader-meta span:nth-child(1) {
+  animation: metaIn .42s var(--ease-in-out) .12s both, metaOut .5s var(--ease-in-out) 4.58s forwards;
+}
+
+.is-loaded .loader-meta span:nth-child(2) {
+  animation: metaIn .42s var(--ease-in-out) .18s both, metaOut .5s var(--ease-in-out) 4.66s forwards;
+}
+
+.is-loaded .loader-meta span:nth-child(3) {
+  animation: metaIn .42s var(--ease-in-out) .24s both, metaOut .5s var(--ease-in-out) 4.74s forwards;
+}
+
+.loader-title,
+.loader-logo {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  font-weight: 700;
+  line-height: .82;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+.loader-title {
+  font-size: clamp(44px, 6.6vw, 112px);
+  opacity: 0;
+}
+
+.is-loaded .loader-title {
+  animation: titleIntro 1.42s var(--ease-in-out) var(--intro-title-start) both;
+}
+
+.loader-logo {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.loader-logo--compact {
+  gap: .03em;
+  font-size: clamp(82px, 11.2vw, 172px);
+  opacity: 0;
+}
+
+.loader-name,
+.loader-q {
+  display: inline-block;
+}
+
+.loader-name {
+  transform-origin: right center;
+}
+
+.loader-q {
+  transform-origin: center center;
+}
+
+.is-loaded .loader-logo--compact {
+  animation:
+    brandIn .78s var(--ease-in-out) var(--intro-brand-start) both,
+    compactExit .32s var(--ease-in-out) 5.46s forwards;
+}
+
+.is-loaded .loader-name {
+  animation: nameDock .9s var(--ease-in-out) var(--intro-morph-start) both;
+}
+
+.is-loaded .loader-q {
+  animation: qGrow .9s var(--ease-in-out) var(--intro-morph-start) both;
+}
+
+@keyframes fieldOff {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes metaIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes metaOut {
+  to {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+}
+
+@keyframes titleIntro {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.96);
+  }
+  18%,
+  68% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.985);
+  }
+}
+
+@keyframes brandIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes nameDock {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-.52em, -.82em) scale(.34);
+  }
+}
+
+@keyframes qGrow {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-.42em, .12em) scale(2.62);
+  }
+}
+
+@keyframes compactExit {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes windowScan {
+  0% {
+    clip-path: inset(calc(50% - var(--intro-strip-half)) 100% calc(50% - var(--intro-strip-half)) 0);
+  }
+  100% {
+    clip-path: inset(calc(50% - var(--intro-strip-half)) 0 calc(50% - var(--intro-strip-half)) 0);
+  }
+}
+
+@keyframes windowOpen {
+  from {
+    clip-path: inset(calc(50% - var(--intro-strip-half)) 0 calc(50% - var(--intro-strip-half)) 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes topPanelOut {
+  to {
+    transform: translateY(-120%);
+  }
+}
+
+@keyframes bottomPanelOut {
+  to {
+    transform: translateY(120%);
+  }
+}
+
+@keyframes loaderGone {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

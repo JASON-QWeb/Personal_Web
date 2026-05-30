@@ -1,0 +1,49 @@
+.project-section {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, .9fr);
+  gap: clamp(30px, 6vw, 88px);
+  align-items: center;
+  padding: clamp(74px, 11vh, 128px) clamp(18px, 5vw, 72px);
+  overflow: hidden;
+}
+
+.project-section--one {
+  background: #111615;
+  color: var(--paper);
+}
+
+.project-section--two {
+  background: #d9e5e2;
+  color: var(--ink);
+}
+
+.project-section--three {
+  background: #f0efea;
+  color: var(--ink);
+}
+
+.project-copy {
+  max-width: 560px;
+}
+
+.project-copy h2 {
+  margin: 18px 0 0;
+  font-size: clamp(54px, 8vw, 112px);
+  line-height: .9;
+  font-weight: 700;
+}
+
+.project-copy p {
+  margin: clamp(22px, 4vh, 38px) 0 0;
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.18;
+}
+
+.project-links {
+  display: flex;
+  gap: 28px;
+  margin-top: 34px;
+  font-weight: 700;
+}

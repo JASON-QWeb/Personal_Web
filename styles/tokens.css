@@ -1,0 +1,23 @@
+:root {
+  --accent: #f3e700;
+  --black: #050505;
+  --ink: #101312;
+  --paper: #ffffff;
+  --mist: #edf1ef;
+  --steel: #aab4b6;
+  --green: #93b7a3;
+  --coral: #e36f55;
+  --ease-in-out: cubic-bezier(.55, 0, .1, 1);
+  --ease-out: cubic-bezier(.22, .75, .12, 1);
+  --pad: clamp(14px, 1.2vw, 18px);
+  --home-bg-url: url("https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=2400&q=86");
+  --home-bg: linear-gradient(90deg, rgba(10, 16, 17, .58), rgba(10, 16, 17, .24)), var(--home-bg-url);
+  --intro-title-start: .12s;
+  --intro-brand-start: 1.42s;
+  --intro-morph-start: 2.48s;
+  --intro-scan-start: 3.52s;
+  --intro-open-start: 4.24s;
+  --intro-open-duration: 1.38s;
+  --intro-end: 5.92s;
+  --intro-strip-half: clamp(10px, 1.45vh, 16px);
+}

@@ -1,0 +1,36 @@
+.home-section {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(72px, 9vh, 104px) var(--pad) clamp(56px, 7vh, 82px);
+}
+
+.home-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.035);
+}
+
+.home-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(8, 14, 16, .62), rgba(8, 14, 16, .18)),
+    linear-gradient(180deg, rgba(255, 255, 255, .18), rgba(0, 0, 0, .22));
+}
+
+.is-loaded .home-bg {
+  animation: heroSettle 3.2s var(--ease-out) var(--intro-open-start) both;
+}
+
+@keyframes heroSettle {
+  to {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,142 @@
+(function (window) {
+  "use strict";
+
+  window.JasonQSiteConfig = {
+    i18n: {
+      defaultLanguage: "en",
+      languages: ["en", "zh-CN"],
+      translations: {
+        en: {
+          "meta.title": "JasonQ | Product-minded AI Builder",
+          "meta.description": "JasonQ builds AI-powered products and enterprise-ready systems across product, design, full-stack engineering, and AI architecture.",
+          "site.aria": "JasonQ personal website",
+          "home.aria": "About JasonQ",
+          "header.aria": "Site header",
+          "nav.aria": "Primary navigation",
+          "nav.brand": "JasonQ",
+          "nav.work": "Work",
+          "nav.contact": "Contact",
+          "languageToggle.aria": "Switch to Chinese",
+          "languageToggle.title": "Switch to Chinese",
+          "profile.aria": "JasonQ profile card",
+          "profile.avatarAlt": "JasonQ avatar",
+          "profile.meta": "Personal Index",
+          "profile.eyebrow": "Product-minded AI Builder",
+          "profile.name": "JasonQ",
+          "profile.intro": "I build AI-powered products and enterprise-ready systems across product, design, full-stack engineering, and AI architecture.",
+          "timeline.education.label": "Education",
+          "timeline.education.logoAlt": "UNSW logo",
+          "timeline.education.name": "UNSW",
+          "timeline.education.date": "2023-2025",
+          "timeline.education.title": "Master of Artificial Intelligence",
+          "timeline.education.copy": "Focused on machine learning, algorithm design, and software development.",
+          "timeline.experience.label": "Experience",
+          "timeline.experience.logoAlt": "Samsung logo",
+          "timeline.experience.name": "Samsung",
+          "timeline.experience.date": "2025-Present",
+          "timeline.experience.title": "Full-stack Developer",
+          "timeline.experience.copy": "Build enterprise automation AI platforms and deliver AI applications for business workflows.",
+          "stack.ai": "AI Stack",
+          "stack.frontend": "Frontend",
+          "stack.backend": "Backend",
+          "stack.delivery": "Delivery",
+          "profile.skills": "Product Strategy · Interface Design · Full-stack Engineering · Enterprise AI Delivery",
+          "profile.viewProjects": "View Projects",
+          "scroll.label": "Scroll",
+          "project.ai.badge": "01/03",
+          "project.ai.title": "AI Workflow Console",
+          "project.ai.copy": "A dense dashboard for reviewing model runs, agent traces, and product metrics without losing operational context.",
+          "project.ai.primary": "Live Demo",
+          "project.ai.secondary": "Case Study",
+          "project.knowledge.badge": "02/03",
+          "project.knowledge.title": "Personal Knowledge Map",
+          "project.knowledge.copy": "An interface for collecting notes, projects, references, and relationships into one browsable personal system.",
+          "project.knowledge.primary": "Open Prototype",
+          "project.knowledge.secondary": "Notes",
+          "project.launch.badge": "03/03",
+          "project.launch.title": "Launch System",
+          "project.launch.copy": "A lightweight starter for turning ideas into public demos with clear structure, fast iteration, and deployable output."
+        },
+        "zh-CN": {
+          "meta.title": "JasonQ | 产品型 AI 构建者",
+          "meta.description": "JasonQ 从产品、设计、全栈工程与 AI 架构出发，构建 AI 产品和可在企业场景落地的数字系统。",
+          "site.aria": "JasonQ 个人主页",
+          "home.aria": "关于 JasonQ",
+          "header.aria": "站点头部",
+          "nav.aria": "主导航",
+          "nav.brand": "JasonQ",
+          "nav.work": "作品",
+          "nav.contact": "联系",
+          "languageToggle.aria": "切换到英文",
+          "languageToggle.title": "切换到英文",
+          "profile.aria": "JasonQ 个人资料卡",
+          "profile.avatarAlt": "JasonQ 头像",
+          "profile.meta": "个人主页",
+          "profile.eyebrow": "产品型 AI 构建者",
+          "profile.name": "JasonQ",
+          "profile.intro": "致力于打造 AI 驱动的产品与企业级系统，核心能力贯穿产品规划、体验设计、全栈开发及 AI 架构",
+          "timeline.education.label": "学习",
+          "timeline.education.logoAlt": "UNSW 标志",
+          "timeline.education.name": "UNSW",
+          "timeline.education.date": "2023-2025",
+          "timeline.education.title": "Master of AI",
+          "timeline.education.copy": "机器学习、算法设计、软件开发。",
+          "timeline.experience.label": "经验",
+          "timeline.experience.logoAlt": "三星标志",
+          "timeline.experience.name": "三星",
+          "timeline.experience.date": "2025-至今",
+          "timeline.experience.title": "全栈开发",
+          "timeline.experience.copy": "企业自动化 AI 平台与应用落地。",
+          "stack.ai": "AI 能力",
+          "stack.frontend": "前端",
+          "stack.backend": "后端",
+          "stack.delivery": "交付",
+          "profile.skills": "产品策略 · 界面设计 · 全栈工程 · 企业 AI 落地",
+          "profile.viewProjects": "查看作品",
+          "scroll.label": "下滑",
+          "project.ai.badge": "01/03",
+          "project.ai.title": "AI 工作流控制台",
+          "project.ai.copy": "面向模型运行、智能体轨迹和产品指标复盘的高密度控制台，保留完整运营上下文。",
+          "project.ai.primary": "在线演示",
+          "project.ai.secondary": "案例研究",
+          "project.knowledge.badge": "02/03",
+          "project.knowledge.title": "个人知识地图",
+          "project.knowledge.copy": "把笔记、项目、资料和关系组织成可浏览个人系统的界面。",
+          "project.knowledge.primary": "打开原型",
+          "project.knowledge.secondary": "笔记",
+          "project.launch.badge": "03/03",
+          "project.launch.title": "发布系统",
+          "project.launch.copy": "用于把想法快速变成公开 demo 的轻量起点，结构清晰、迭代快速、方便部署。"
+        }
+      }
+    },
+
+    intro: {
+      heroImageSelector: ".home-bg",
+      loadedClass: "is-loaded",
+      completeClass: "is-intro-complete",
+      waitForHeroImage: false,
+      imageReadyDelayMs: 180,
+      imageTimeoutMs: 1200,
+      totalDurationMs: 6200
+    },
+
+    projects: [
+      {
+        id: "ai-workflow-console",
+        order: "01/03",
+        title: "AI Workflow Console"
+      },
+      {
+        id: "personal-knowledge-map",
+        order: "02/03",
+        title: "Personal Knowledge Map"
+      },
+      {
+        id: "launch-system",
+        order: "03/03",
+        title: "Launch System"
+      }
+    ]
+  };
+})(window);

@@ -1,0 +1,260 @@
+@media (max-width: 980px) {
+  .home-section {
+    align-items: flex-start;
+    min-height: auto;
+  }
+
+  .profile-card {
+    min-height: 0;
+  }
+
+  .profile-card__grid,
+  .project-section {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-main {
+    grid-template-columns: 112px minmax(0, 1fr);
+  }
+
+  .avatar {
+    width: 112px;
+    height: 112px;
+  }
+
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .project-copy {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-section {
+    min-height: 100svh;
+    align-items: stretch;
+    padding: 64px var(--pad) 42px;
+  }
+
+  .head-nav {
+    gap: 14px;
+  }
+
+  .head-nav a:not(.head-brand) {
+    display: none;
+  }
+
+  .lang-toggle {
+    font-size: 13px;
+  }
+
+  .profile-card {
+    width: 100%;
+    min-height: calc(100svh - 106px);
+    max-height: calc(100svh - 106px);
+    justify-content: start;
+    gap: 14px;
+    padding: 16px;
+    overflow: hidden;
+  }
+
+  .profile-card__meta {
+    font-size: 13px;
+  }
+
+  .profile-card__foot {
+    display: none;
+  }
+
+  .profile-card__grid {
+    display: block;
+  }
+
+  .profile-main {
+    display: grid;
+    grid-template-columns: 84px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    gap: 10px 14px;
+    align-items: start;
+  }
+
+  .profile-main > div:first-of-type {
+    min-height: 0;
+  }
+
+  .avatar {
+    width: 84px;
+    height: 84px;
+  }
+
+  .profile-main h1 {
+    font-size: clamp(48px, 14vw, 62px);
+    line-height: .88;
+  }
+
+  .eyebrow {
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+
+  .intro {
+    max-width: 100%;
+    min-height: 0;
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 1.25;
+    overflow-wrap: break-word;
+  }
+
+  .timeline {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .timeline-item {
+    height: auto;
+    min-height: 0;
+    padding: 10px;
+  }
+
+  .timeline-item__head {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .timeline-logo {
+    width: 36px;
+    height: 28px;
+  }
+
+  .timeline-logo--unsw {
+    width: 58px;
+    height: 28px;
+    padding: 4px;
+  }
+
+  .timeline-logo--wide {
+    width: 58px;
+    height: 28px;
+  }
+
+  .timeline-logo--samsung {
+    width: 58px;
+    height: 28px;
+  }
+
+  .timeline-item span,
+  .stack-group h2,
+  .project-copy span {
+    font-size: 10px;
+  }
+
+  .timeline-item strong {
+    margin-top: 2px;
+    font-size: 16px;
+  }
+
+  .timeline-item p {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.28;
+    overflow-wrap: break-word;
+  }
+
+  .timeline-item__title {
+    font-size: 13px;
+  }
+
+  .stack-panel {
+    display: none;
+  }
+
+  .logo-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .logo-list--ai,
+  .logo-list--frontend,
+  .logo-list--backend,
+  .logo-list--delivery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .logo-list--ai li,
+  .logo-list--ai li:nth-child(1),
+  .logo-list--ai li:nth-child(2),
+  .logo-list--ai li:nth-child(3),
+  .logo-list--ai li:nth-child(4),
+  .logo-list--ai li:nth-child(5),
+  .logo-list--ai li:nth-child(6),
+  .logo-list--ai li:nth-child(7) {
+    grid-column: auto;
+  }
+
+  .loader-logo--compact {
+    font-size: clamp(54px, 18vw, 92px);
+  }
+
+  .loader-title {
+    width: min(360px, calc(100vw - var(--pad) * 2));
+    font-size: clamp(30px, 9vw, 48px);
+    line-height: .96;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .loader-meta {
+    font-size: 14px;
+  }
+
+  .loader-meta span:nth-child(1) {
+    top: 13vh;
+    left: 7vw;
+  }
+
+  .loader-meta span:nth-child(2) {
+    left: 9vw;
+    bottom: 13vh;
+  }
+
+  .loader-meta span:nth-child(3) {
+    right: 7vw;
+    bottom: 25vh;
+  }
+
+  @keyframes nameDock {
+    to {
+      transform: translate(-.46em, -.8em) scale(.35);
+    }
+  }
+
+  @keyframes qGrow {
+    to {
+      transform: translate(-.38em, .14em) scale(2.35);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    overflow: auto;
+  }
+
+  .loader {
+    display: none;
+  }
+
+  .home-bg,
+  .site-head,
+  .profile-card,
+  .scroll-cue {
+    opacity: 1;
+    clip-path: none;
+    transform: none;
+    animation: none;
+  }
+}

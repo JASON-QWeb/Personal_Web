@@ -1,0 +1,159 @@
+.site-head {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--pad);
+  color: var(--paper);
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.is-loaded .site-head {
+  animation: headIn .75s var(--ease-in-out) var(--intro-end) both;
+}
+
+.head-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.4vw, 34px);
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1;
+}
+
+.head-nav a {
+  position: relative;
+}
+
+.head-nav a::after,
+.profile-card__foot a::after,
+.project-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.head-brand {
+  min-width: 34px;
+}
+
+.lang-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 28px;
+  padding: 0 2px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: clamp(12px, .92vw, 14px);
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.head-lang {
+  min-width: 68px;
+  justify-content: flex-start;
+}
+
+.lang-toggle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: currentColor;
+  opacity: .42;
+}
+
+.lang-toggle:focus-visible {
+  outline: 0;
+}
+
+.lang-toggle:focus-visible::after {
+  opacity: 1;
+  height: 2px;
+}
+
+.lang-toggle__option {
+  opacity: .52;
+  transition: opacity .18s var(--ease-in-out);
+}
+
+.lang-toggle__divider {
+  width: 1px;
+  height: 12px;
+  background: currentColor;
+  opacity: .42;
+}
+
+html[data-language="en"] .lang-toggle__option[data-lang-code="en"],
+html[data-language="zh-CN"] .lang-toggle__option[data-lang-code="zh-CN"] {
+  opacity: 1;
+}
+
+.scroll-cue {
+  position: fixed;
+  z-index: 18;
+  right: var(--pad);
+  bottom: var(--pad);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--paper);
+  font-weight: 700;
+  font-size: clamp(14px, 1.05vw, 16px);
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.is-loaded .scroll-cue {
+  animation: scrollCueIn .8s var(--ease-in-out) calc(var(--intro-end) + .18s) both;
+}
+
+.scroll-cue i {
+  width: .8em;
+  height: .8em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  animation: cueArrow .9s var(--ease-in-out) .2s infinite alternate;
+}
+
+@keyframes headIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollCueIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cueArrow {
+  from {
+    transform: translateY(-4px) rotate(45deg);
+  }
+  to {
+    transform: translateY(3px) rotate(45deg);
+  }
+}
