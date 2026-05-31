@@ -37,19 +37,20 @@
 }
 
 .project-section--purrpilot {
+  --purr-pixel-border: #24182b;
+  --purr-pixel-shadow: #07050d;
+  --purr-pixel-cream: #fff4c7;
   grid-template-columns: minmax(340px, .72fr) minmax(0, 1.06fr);
   background:
-    radial-gradient(circle at 18% 18%, rgba(255, 197, 92, .34), transparent 30%),
-    radial-gradient(circle at 82% 26%, rgba(91, 210, 180, .25), transparent 28%),
-    linear-gradient(180deg, #fffdf6 0%, #fff2d7 100%);
-  color: #243238;
+    linear-gradient(90deg, rgba(255, 246, 214, .72) 0%, rgba(255, 246, 214, .34) 43%, rgba(255, 255, 255, .08) 100%),
+    url("../../assets/project-backgrounds/purrpilot-sky-meadow.jpg") center center / cover no-repeat;
+  color: var(--purr-pixel-border);
+  font-family: "Courier New", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 .project-section--purrpilot::before {
-  background:
-    radial-gradient(circle, rgba(255, 132, 89, .34) 0 6px, transparent 7px) 12% 74% / 86px 86px,
-    radial-gradient(circle, rgba(41, 137, 216, .23) 0 5px, transparent 6px) 84% 66% / 92px 92px;
-  opacity: .7;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 244, 199, .12));
+  opacity: .72;
 }
 
 .project-visual,
@@ -179,23 +180,25 @@
 }
 
 .project-section--purrpilot .project-kicker {
-  color: #f06f45;
+  color: #af3f31;
 }
 
 .project-copy--purrpilot p {
-  color: rgba(36, 50, 56, .74);
+  color: rgba(36, 24, 43, .74);
 }
 
 .project-copy--purrpilot .project-points {
-  border-color: rgba(36, 50, 56, .12);
+  border-top-width: 3px;
+  border-color: rgba(36, 24, 43, .32);
 }
 
 .project-copy--purrpilot .project-points div {
-  border-color: rgba(36, 50, 56, .12);
+  border-bottom-width: 3px;
+  border-color: rgba(36, 24, 43, .32);
 }
 
 .project-copy--purrpilot .project-points span {
-  color: rgba(36, 50, 56, .64);
+  color: rgba(36, 24, 43, .64);
 }
 
 .project-copy--purrpilot {
@@ -203,7 +206,8 @@
 }
 
 .project-title--purrpilot {
-  color: #243238;
+  color: var(--purr-pixel-border);
+  text-shadow: 5px 5px 0 rgba(255, 212, 71, .75);
 }
 
 .project-visual--purrpilot {
@@ -218,17 +222,17 @@
   width: min(690px, 100%);
   min-height: clamp(390px, 54vh, 620px);
   overflow: hidden;
-  border: 1px solid rgba(36, 50, 56, .1);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, .84);
-  box-shadow: 0 34px 84px rgba(255, 132, 89, .2);
+  border: 4px solid var(--purr-pixel-border);
+  border-radius: 0;
+  background: var(--purr-pixel-cream);
+  box-shadow: 14px 14px 0 var(--purr-pixel-shadow);
 }
 
 .purrpilot-demo-shell::before,
 .purrpilot-demo-shell::after {
   content: "";
   position: absolute;
-  border-radius: 999px;
+  border-radius: 0;
   pointer-events: none;
 }
 
@@ -237,7 +241,7 @@
   height: 220px;
   right: -72px;
   top: 92px;
-  background: rgba(255, 197, 92, .3);
+  background: rgba(255, 212, 71, .36);
 }
 
 .purrpilot-demo-shell::after {
@@ -245,7 +249,7 @@
   height: 168px;
   left: -48px;
   bottom: -34px;
-  background: rgba(91, 210, 180, .24);
+  background: rgba(98, 201, 142, .3);
 }
 
 .purrpilot-demo-shell__top {
@@ -253,13 +257,13 @@
   align-items: center;
   gap: 8px;
   padding: 0 18px;
-  border-bottom: 1px solid rgba(36, 50, 56, .08);
+  border-bottom: 4px solid var(--purr-pixel-border);
 }
 
 .purrpilot-demo-shell__top span {
   width: 11px;
   height: 11px;
-  border-radius: 50%;
+  border-radius: 0;
   background: #ff855f;
 }
 
@@ -282,8 +286,8 @@
 .purrpilot-demo-shell__body i {
   display: block;
   min-height: 140px;
-  border: 1px solid rgba(36, 50, 56, .08);
-  border-radius: 8px;
+  border: 3px solid var(--purr-pixel-border);
+  border-radius: 0;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, .92), rgba(255, 255, 255, .72)),
     linear-gradient(135deg, rgba(255, 132, 89, .2), transparent 60%);
