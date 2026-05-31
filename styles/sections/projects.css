@@ -702,11 +702,11 @@
 
 .project-section--dataclean {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(360px, .74fr);
-  gap: clamp(52px, 6.5vw, 108px);
+  grid-template-columns: minmax(0, 1.08fr) minmax(330px, .68fr);
+  gap: clamp(34px, 4.8vw, 76px);
   align-items: center;
-  padding-top: clamp(76px, 10vh, 132px);
-  padding-bottom: clamp(52px, 7vh, 96px);
+  padding-top: clamp(70px, 9vh, 112px);
+  padding-bottom: clamp(46px, 6vh, 78px);
   background:
     linear-gradient(135deg, rgba(29, 78, 216, .12), transparent 38%),
     linear-gradient(180deg, #f7fbfb 0%, #e8f1f2 100%);
@@ -734,13 +734,13 @@
 .dataclean-stage {
   display: flex;
   align-items: center;
-  height: min(72dvh, 760px);
-  min-height: 480px;
+  height: min(62dvh, 620px);
+  min-height: 400px;
 }
 
 .dataclean-browser {
   display: grid;
-  grid-template-rows: 44px minmax(0, 1fr);
+  grid-template-rows: 38px minmax(0, 1fr);
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -748,7 +748,7 @@
   border: 1px solid rgba(19, 34, 43, .12);
   border-radius: 8px;
   background: #f9fcfc;
-  box-shadow: 0 40px 105px rgba(42, 92, 122, .2);
+  box-shadow: 0 32px 82px rgba(42, 92, 122, .18);
 }
 
 .dataclean-browser__top {
@@ -813,22 +813,64 @@
 .dataclean-media img {
   position: relative;
   z-index: 1;
-  width: auto;
-  height: auto;
-  max-width: calc(100% - clamp(22px, 3vw, 42px));
-  max-height: calc(100% - clamp(22px, 3vw, 42px));
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
   opacity: 0;
   transition: opacity .32s var(--ease-out);
 }
 
-.dataclean-media--home img,
-.dataclean-media--intake img,
-.dataclean-media--result img,
-.dataclean-media--architecture img {
+.dataclean-demo-carousel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #080a20;
+}
+
+.dataclean-demo-carousel img {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  opacity: 0;
+}
+
+.dataclean-media.is-media-loaded .dataclean-demo-carousel img {
+  opacity: 0;
+  animation: datacleanCarousel 25s infinite;
+}
+
+.dataclean-media.is-media-loaded .dataclean-demo-carousel img:nth-child(2) {
+  animation-delay: 5s;
+}
+
+.dataclean-demo-carousel img:nth-child(1) {
+  object-position: 30% center;
+}
+
+.dataclean-media.is-media-loaded .dataclean-demo-carousel img:nth-child(3) {
+  animation-delay: 10s;
+}
+
+.dataclean-media.is-media-loaded .dataclean-demo-carousel img:nth-child(4) {
+  animation-delay: 15s;
+}
+
+.dataclean-media.is-media-loaded .dataclean-demo-carousel img:nth-child(5) {
+  animation-delay: 20s;
+}
+
+.dataclean-media--architecture > img {
+  padding: clamp(14px, 2vw, 24px);
+  object-fit: contain;
+  background: #ffffff;
   border: 1px solid rgba(19, 34, 43, .1);
-  border-radius: 6px;
-  box-shadow: 0 22px 60px rgba(31, 57, 70, .16);
+  box-shadow: 0 22px 60px rgba(31, 57, 70, .14);
 }
 
 .dataclean-media--processing img,
@@ -853,6 +895,7 @@
 .dataclean-model-grid img {
   max-width: 100%;
   max-height: 100%;
+  object-fit: contain;
   border: 1px solid rgba(19, 34, 43, .1);
   border-radius: 6px;
   box-shadow: 0 20px 54px rgba(31, 57, 70, .14);
@@ -885,7 +928,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 550px;
+  max-width: 500px;
 }
 
 .project-section--dataclean .project-kicker {
@@ -893,10 +936,10 @@
 }
 
 .dataclean-title {
-  margin: 18px 0 0;
+  margin: 14px 0 0;
   color: #13222b;
-  font-size: clamp(50px, 5.7vw, 84px);
-  line-height: .9;
+  font-size: clamp(42px, 4.4vw, 64px);
+  line-height: .95;
   font-weight: 800;
   letter-spacing: 0;
 }
@@ -906,42 +949,40 @@
 }
 
 .dataclean-copy > p {
-  margin: clamp(16px, 2.4vh, 24px) 0 0;
+  margin: clamp(14px, 2vh, 20px) 0 0;
   color: rgba(19, 34, 43, .74);
-  font-size: clamp(17px, 1.45vw, 20px);
+  font-size: clamp(16px, 1.25vw, 18px);
   line-height: 1.32;
 }
 
 .dataclean-features {
-  counter-reset: dataclean-feature;
   display: grid;
-  gap: 7px;
+  gap: 6px;
   width: 100%;
-  margin-top: clamp(22px, 3vh, 32px);
+  margin-top: clamp(18px, 2.6vh, 28px);
 }
 
 .dataclean-features div {
   position: relative;
   display: grid;
   gap: 6px;
-  counter-increment: dataclean-feature;
-  min-height: 64px;
-  padding: 0 0 12px 46px;
+  min-height: 58px;
+  padding: 0 0 11px 70px;
   border-bottom: 1px solid rgba(19, 34, 43, .13);
 }
 
 .dataclean-features div::before {
-  content: counter(dataclean-feature, decimal-leading-zero);
+  content: attr(data-feature-code);
   position: absolute;
   top: 1px;
   left: 0;
-  width: 28px;
+  width: 54px;
   color: #4f46e5;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
+  letter-spacing: 0;
   line-height: 1;
-  font-variant-numeric: tabular-nums;
 }
 
 .dataclean-features div::after {
@@ -949,30 +990,27 @@
   position: absolute;
   top: 2px;
   bottom: 14px;
-  left: 34px;
+  left: 60px;
   width: 1px;
   background: linear-gradient(180deg, rgba(79, 70, 229, .72), rgba(6, 182, 212, .08));
 }
 
 .dataclean-features strong {
   color: #13222b;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.1;
 }
 
 .dataclean-features span {
   color: rgba(19, 34, 43, .62);
-  font-size: 14px;
-  line-height: 1.42;
+  font-size: 13px;
+  line-height: 1.38;
 }
 
 .dataclean-stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 2.2vw, 28px);
-  align-items: center;
-  width: 100%;
-  margin: clamp(18px, 3vh, 28px) 0 0;
+  display: inline-grid;
+  width: auto;
+  margin: clamp(16px, 2.4vh, 24px) 0 0;
 }
 
 .dataclean-stats div {
@@ -994,7 +1032,7 @@
   min-width: 0;
   margin: 0;
   color: #13222b;
-  font-size: clamp(17px, 1.36vw, 22px);
+  font-size: clamp(18px, 1.45vw, 24px);
   line-height: 1;
   font-weight: 800;
   overflow-wrap: break-word;
@@ -1003,8 +1041,8 @@
 .dataclean-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 18px;
-  margin-top: clamp(24px, 4vh, 36px);
+  gap: 12px 20px;
+  margin-top: clamp(20px, 3vh, 30px);
 }
 
 .dataclean-actions a,
@@ -1035,6 +1073,25 @@
   color: #4f46e5;
   transform: translateY(-1px);
   outline: 0;
+}
+
+@keyframes datacleanCarousel {
+  0% {
+    opacity: 0;
+    transform: scale(1.018);
+  }
+
+  4%,
+  18% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  22%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
 }
 
 @keyframes quickjumpPaneIn {
