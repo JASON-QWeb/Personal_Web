@@ -102,6 +102,11 @@
   opacity: .42;
 }
 
+.is-light-section-active .site-head,
+.is-light-section-active .scroll-cue {
+  color: #092047;
+}
+
 html[data-language="en"] .lang-toggle__option[data-lang-code="en"],
 html[data-language="zh-CN"] .lang-toggle__option[data-lang-code="zh-CN"] {
   opacity: 1;
@@ -153,6 +158,13 @@ html[data-language="zh-CN"] .lang-toggle__option[data-lang-code="zh-CN"] {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
+  }
+
+  .is-mobile-scrolled .scroll-cue {
+    visibility: hidden;
+    opacity: 0 !important;
+    pointer-events: none;
+    animation: none;
   }
 }
 

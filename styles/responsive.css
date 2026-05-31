@@ -28,12 +28,32 @@
 
   .project-copy {
     max-width: none;
+    order: -1;
+  }
+
+  .project-section--codezero,
+  .project-section--purrpilot,
+  .project-section--quickjump {
+    min-height: auto;
+  }
+
+  .quickjump-copy {
+    order: -1;
+    max-width: none;
+  }
+
+  .quickjump-copy h2 {
+    max-width: 10em;
+  }
+
+  .quickjump-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
   .home-section {
-    min-height: 100svh;
+    min-height: 100dvh;
     align-items: stretch;
     padding: 64px var(--pad) 42px;
   }
@@ -52,7 +72,7 @@
 
   .profile-card {
     width: 100%;
-    min-height: calc(100svh - 106px);
+    min-height: calc(100dvh - 106px);
     max-height: none;
     justify-content: start;
     gap: 14px;
@@ -80,13 +100,31 @@
     align-items: start;
   }
 
-  .profile-main > div:first-of-type {
+  .profile-copy {
     min-height: 0;
   }
 
   .avatar {
     width: 84px;
     height: 84px;
+  }
+
+  .profile-avatar-block {
+    gap: 8px;
+  }
+
+  .profile-contact-links {
+    gap: 8px;
+  }
+
+  .profile-contact-link {
+    width: 34px;
+    height: 34px;
+  }
+
+  .profile-contact-link svg {
+    width: 18px;
+    height: 18px;
   }
 
   .profile-main h1 {
@@ -164,8 +202,210 @@
 
   .timeline-item span,
   .stack-group h2,
-  .project-copy span {
+  .project-kicker {
     font-size: 10px;
+  }
+
+  .project-section--codezero,
+  .project-section--purrpilot {
+    gap: 30px;
+    padding: 86px var(--pad) 52px;
+  }
+
+  .project-title {
+    margin-top: 14px;
+    font-size: clamp(48px, 16vw, 68px);
+    line-height: .92;
+  }
+
+  .project-copy p {
+    margin-top: 18px;
+    font-size: 16px;
+    line-height: 1.34;
+  }
+
+  .project-points {
+    margin-top: 22px;
+  }
+
+  .project-points div {
+    gap: 6px;
+    padding: 14px 0;
+  }
+
+  .project-points strong {
+    font-size: 14px;
+  }
+
+  .project-points span {
+    font-size: 13px;
+  }
+
+  .project-visual {
+    min-height: 0;
+  }
+
+  .codezero-frame,
+  .purrpilot-demo-shell {
+    min-height: 292px;
+  }
+
+  .codezero-frame::after {
+    inset: 74px 28px 34px;
+  }
+
+  .purrpilot-demo-shell {
+    grid-template-rows: 40px minmax(0, 1fr);
+  }
+
+  .purrpilot-demo-shell__top {
+    padding: 0 12px;
+  }
+
+  .purrpilot-demo-shell__top span {
+    width: 9px;
+    height: 9px;
+  }
+
+  .purrpilot-demo-shell__body {
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .purrpilot-demo-shell__body i {
+    min-height: 92px;
+  }
+
+  .project-section--quickjump {
+    gap: 32px;
+    padding: 86px var(--pad) 48px;
+  }
+
+  .quickjump-copy h2 {
+    margin-top: 14px;
+    font-size: clamp(44px, 14.5vw, 62px);
+    line-height: .9;
+  }
+
+  .quickjump-copy p {
+    margin-top: 18px;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  html[data-language="en"] .quickjump-copy p {
+    font-size: 13px;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+
+  .quickjump-features {
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .quickjump-features div {
+    min-height: 66px;
+    padding: 0 0 10px 40px;
+  }
+
+  .quickjump-features div::before {
+    width: 24px;
+    font-size: 10px;
+  }
+
+  .quickjump-features div::after {
+    left: 30px;
+    bottom: 12px;
+  }
+
+  .quickjump-features strong {
+    font-size: 14px;
+  }
+
+  .quickjump-features span {
+    font-size: 13px;
+  }
+
+  .quickjump-stats {
+    grid-template-columns: repeat(3, max-content);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .quickjump-stat {
+    min-height: 0;
+    padding: 0;
+    gap: 5px;
+  }
+
+  .quickjump-stat--rating {
+    gap: 8px;
+  }
+
+  .quickjump-stat dt {
+    font-size: 9px;
+  }
+
+  .quickjump-stats dd {
+    margin: 0;
+    font-size: 19px;
+  }
+
+  .quickjump-rating-dial {
+    width: 48px;
+    height: 48px;
+  }
+
+  .quickjump-rating-dial::after {
+    inset: 6px;
+  }
+
+  .quickjump-rating-dial__score {
+    font-size: 16px;
+  }
+
+  .quickjump-actions {
+    gap: 12px 18px;
+    margin-top: 24px;
+  }
+
+  .quickjump-actions a,
+  .quickjump-actions button {
+    min-height: 26px;
+    padding: 0 0 4px;
+    font-size: 13px;
+  }
+
+  .quickjump-showcase {
+    display: block;
+  }
+
+  .quickjump-stage {
+    height: auto;
+    min-height: 0;
+  }
+
+  .quickjump-browser {
+    grid-template-rows: 36px minmax(0, 1fr);
+    height: 292px;
+    min-height: 0;
+  }
+
+  .quickjump-browser__top {
+    min-height: 36px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
+
+  .quickjump-browser__top span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .quickjump-media--demo img,
+  .quickjump-media--platforms img {
+    padding: 8px;
   }
 
   .timeline-item strong {

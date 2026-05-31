@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="JasonQ builds AI-powered products and enterprise-ready systems across product, design, full-stack engineering, and AI architecture.">
     <title>JasonQ | Product-minded AI Builder</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preload" as="image" href="assets/home-bg-warm-studio.jpg" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -29,7 +30,7 @@
           <nav class="head-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.aria">
             <a class="head-brand" href="#about" data-i18n="nav.brand">JasonQ</a>
             <a href="#projects" data-i18n="nav.work">Work</a>
-            <a href="#contact" data-i18n="nav.contact">Contact</a>
+            <a href="#about" data-i18n="nav.contact">Contact</a>
           </nav>
         </header>
 
@@ -41,8 +42,22 @@
 
           <div class="profile-card__grid">
             <section class="profile-main" aria-label="Profile">
-              <img class="avatar" src="assets/avatar.jpg" alt="JasonQ avatar" data-i18n-attr="alt:profile.avatarAlt">
-              <div>
+              <div class="profile-avatar-block">
+                <img class="avatar" src="assets/avatar.jpg" alt="JasonQ avatar" data-i18n-attr="alt:profile.avatarAlt">
+                <div class="profile-contact-links" aria-label="Profile contact links" data-i18n-attr="aria-label:profile.contactLinksAria">
+                  <a class="profile-contact-link" href="https://github.com/JASON-QWeb" target="_blank" rel="noopener noreferrer" aria-label="Open JasonQ GitHub" title="GitHub" data-i18n-attr="aria-label:profile.githubAria">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M12 .5a12 12 0 0 0-3.8 23.39c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.42-4.04-1.42-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.92 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.48 11.48 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.6-2.8 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"></path>
+                    </svg>
+                  </a>
+                  <a class="profile-contact-link" href="mailto:15680939418@163.com" aria-label="Email JasonQ" title="Email" data-i18n-attr="aria-label:profile.emailAria">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M4.75 5.5h14.5A2.75 2.75 0 0 1 22 8.25v7.5a2.75 2.75 0 0 1-2.75 2.75H4.75A2.75 2.75 0 0 1 2 15.75v-7.5A2.75 2.75 0 0 1 4.75 5.5Zm0 1.5c-.28 0-.53.08-.75.22l7.1 5.14a1.54 1.54 0 0 0 1.8 0L20 7.22A1.4 1.4 0 0 0 19.25 7H4.75Zm15.75 1.8-6.72 4.87a3.05 3.05 0 0 1-3.56 0L3.5 8.8v6.95c0 .69.56 1.25 1.25 1.25h14.5c.69 0 1.25-.56 1.25-1.25V8.8Z"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <div class="profile-copy">
                 <p class="eyebrow" data-i18n="profile.eyebrow">Product-minded AI Builder</p>
                 <h1 data-i18n="profile.name">JasonQ</h1>
                 <p class="intro" data-i18n="profile.intro">I build AI-powered products and enterprise-ready systems across product, design, full-stack engineering, and AI architecture.</p>
@@ -142,79 +157,190 @@
       </section>
 
       <section
-        class="project-section project-section--one"
+        class="project-section project-section--codezero"
         id="projects"
         data-section="project"
-        data-project="ai-workflow-console"
-        aria-label="Project 01"
+        data-project="codezero"
+        aria-label="Project 01: CodeZero"
+        data-i18n-attr="aria-label:project.codezero.aria"
       >
-        <div class="project-demo">
-          <div class="demo-window">
-            <div class="demo-bar"><span></span><span></span><span></span></div>
-            <div class="demo-grid">
-              <div class="metric-card"><strong>84%</strong><span>Task flow</span></div>
-              <div class="metric-card"><strong>12k</strong><span>Events</span></div>
-              <div class="chart-card"></div>
-            </div>
+        <div class="project-visual project-visual--codezero" aria-label="CodeZero showcase reserved" data-i18n-attr="aria-label:project.codezero.visualAria">
+          <div class="codezero-frame" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
-        <article class="project-copy">
-          <span data-i18n="project.ai.badge">01/03</span>
-          <h2 data-i18n="project.ai.title">AI Workflow Console</h2>
-          <p data-i18n="project.ai.copy">A dense dashboard for reviewing model runs, agent traces, and product metrics without losing operational context.</p>
-          <div class="project-links">
-            <a href="#" data-i18n="project.ai.primary">Live Demo</a>
-            <a href="#" data-i18n="project.ai.secondary">Case Study</a>
+
+        <article class="project-copy project-copy--codezero">
+          <span class="project-kicker" data-i18n="project.codezero.badge">01 / Enterprise Product</span>
+          <h2 class="project-title project-title--codezero" data-i18n="project.codezero.title">CodeZero</h2>
+          <p data-i18n="project.codezero.copy">A blue-white enterprise project slot prepared for CodeZero's product story, screenshots, and case-study details.</p>
+
+          <div class="project-points" aria-label="CodeZero focus" data-i18n-attr="aria-label:project.codezero.pointsAria">
+            <div>
+              <strong data-i18n="project.codezero.pointOne">Enterprise-first presence</strong>
+              <span data-i18n="project.codezero.pointOneCopy">A calm, structured visual system for technical and business audiences.</span>
+            </div>
+            <div>
+              <strong data-i18n="project.codezero.pointTwo">Showcase reserved</strong>
+              <span data-i18n="project.codezero.pointTwoCopy">The left-side product display is intentionally empty until final assets are ready.</span>
+            </div>
+            <div>
+              <strong data-i18n="project.codezero.pointThree">Case study ready</strong>
+              <span data-i18n="project.codezero.pointThreeCopy">Copy, metrics, and links can be dropped into the same layout later.</span>
+            </div>
           </div>
         </article>
       </section>
 
       <section
-        class="project-section project-section--two"
+        class="project-section project-section--purrpilot"
         data-section="project"
-        data-project="personal-knowledge-map"
-        aria-label="Project 02"
+        data-project="purrpilot"
+        aria-label="Project 02: PurrPilot"
+        data-i18n-attr="aria-label:project.purrpilot.aria"
       >
-        <div class="project-demo project-demo--phone">
-          <div class="phone-demo">
-            <div class="phone-top"></div>
-            <div class="phone-list">
-              <span></span><span></span><span></span><span></span>
+        <div class="project-visual project-visual--purrpilot" aria-label="PurrPilot demo reserved" data-i18n-attr="aria-label:project.purrpilot.visualAria">
+          <div class="purrpilot-demo-shell" aria-hidden="true">
+            <div class="purrpilot-demo-shell__top">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="purrpilot-demo-shell__body">
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
             </div>
           </div>
         </div>
-        <article class="project-copy">
-          <span data-i18n="project.knowledge.badge">02/03</span>
-          <h2 data-i18n="project.knowledge.title">Personal Knowledge Map</h2>
-          <p data-i18n="project.knowledge.copy">An interface for collecting notes, projects, references, and relationships into one browsable personal system.</p>
-          <div class="project-links">
-            <a href="#" data-i18n="project.knowledge.primary">Open Prototype</a>
-            <a href="#" data-i18n="project.knowledge.secondary">Notes</a>
+
+        <article class="project-copy project-copy--purrpilot">
+          <span class="project-kicker" data-i18n="project.purrpilot.badge">02 / Playful Product</span>
+          <h2 class="project-title project-title--purrpilot" data-i18n="project.purrpilot.title">PurrPilot</h2>
+          <p data-i18n="project.purrpilot.copy">A cheerful project space for PurrPilot, with a demo area reserved for the next product preview.</p>
+
+          <div class="project-points" aria-label="PurrPilot focus" data-i18n-attr="aria-label:project.purrpilot.pointsAria">
+            <div>
+              <strong data-i18n="project.purrpilot.pointOne">Bright personality</strong>
+              <span data-i18n="project.purrpilot.pointOneCopy">Soft color, playful rhythm, and friendly motion cues keep the section light.</span>
+            </div>
+            <div>
+              <strong data-i18n="project.purrpilot.pointTwo">Demo reserved</strong>
+              <span data-i18n="project.purrpilot.pointTwoCopy">The preview shell is ready for screenshots, GIFs, or an embedded product clip.</span>
+            </div>
+            <div>
+              <strong data-i18n="project.purrpilot.pointThree">Expandable story</strong>
+              <span data-i18n="project.purrpilot.pointThreeCopy">Future feature notes and launch links can be added without changing the section.</span>
+            </div>
           </div>
         </article>
       </section>
 
       <section
-        class="project-section project-section--three"
-        id="contact"
+        class="project-section project-section--quickjump"
         data-section="project"
-        data-project="launch-system"
-        aria-label="Project 03 and contact"
+        data-project="aichat-quickjump"
+        aria-label="Project 03: AI Chat Jump Click"
+        data-i18n-attr="aria-label:project.quickjump.aria"
       >
-        <div class="project-demo">
-          <div class="terminal-demo">
-            <p>$ ship --site jasonq</p>
-            <p>building interface...</p>
-            <p>deploy ready.</p>
+        <div class="quickjump-showcase" data-project-showcase>
+          <div class="quickjump-stage" aria-live="polite">
+            <div class="quickjump-browser">
+              <div class="quickjump-browser__top">
+                <span></span><span></span><span></span>
+                <p data-showcase-window-title data-i18n="project.quickjump.platformsWindow">aichatjump.click</p>
+              </div>
+
+              <figure
+                class="quickjump-media quickjump-media--demo"
+                id="quickjump-panel-demo"
+                data-showcase-panel="demo"
+                data-showcase-title-key="project.quickjump.demoWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="quickjump-media__loader" data-i18n="project.quickjump.mediaLoading">Loading preview...</div>
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                  data-demo-src="/aichat/demo.gif"
+                  alt="AI Chat Quick Jump demo"
+                  data-i18n-attr="alt:project.quickjump.demoAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <figure
+                class="quickjump-media quickjump-media--platforms is-active"
+                id="quickjump-panel-platforms"
+                data-showcase-panel="platforms"
+                data-showcase-title-key="project.quickjump.platformsWindow"
+              >
+                <div class="quickjump-media__loader" data-i18n="project.quickjump.mediaLoading">Loading preview...</div>
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                  data-demo-src="/aichat/platforms.png"
+                  alt="AI Chat Quick Jump supported platforms"
+                  data-i18n-attr="alt:project.quickjump.platformsAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+            </div>
           </div>
         </div>
-        <article class="project-copy">
-          <span data-i18n="project.launch.badge">03/03</span>
-          <h2 data-i18n="project.launch.title">Launch System</h2>
-          <p data-i18n="project.launch.copy">A lightweight starter for turning ideas into public demos with clear structure, fast iteration, and deployable output.</p>
-          <div class="project-links">
-            <a href="mailto:hello@example.com">Email</a>
-            <a href="#">GitHub</a>
+
+        <article class="quickjump-copy">
+          <span class="project-kicker" data-i18n="project.quickjump.badge">03 / Browser Extension</span>
+          <h2 class="quickjump-title" aria-label="AI Chat Jump Click" data-i18n-attr="aria-label:project.quickjump.title">
+            <span data-i18n="project.quickjump.titleLineOne">AI Chat</span>
+            <span data-i18n="project.quickjump.titleLineTwo">Jump Click</span>
+          </h2>
+          <p data-i18n="project.quickjump.copy">Preview, jump through, and save your AI conversations.</p>
+
+          <div class="quickjump-features" aria-label="Core features" data-i18n-attr="aria-label:project.quickjump.featuresAria">
+            <div>
+              <strong data-i18n="project.quickjump.featureNav">Conversation navigation</strong>
+              <span data-i18n="project.quickjump.featureNavCopy">Right-side nodes let users jump back to any question without scrolling.</span>
+            </div>
+            <div>
+              <strong data-i18n="project.quickjump.featureBookmark">Bookmarks and highlights</strong>
+              <span data-i18n="project.quickjump.featureBookmarkCopy">Long press to save important answers and return to them later.</span>
+            </div>
+            <div>
+              <strong data-i18n="project.quickjump.featureShortcut">Keyboard support</strong>
+              <span data-i18n="project.quickjump.featureShortcutCopy">Alt shortcuts move, mark, hide, and reveal the navigation rail.</span>
+            </div>
+          </div>
+
+          <dl class="quickjump-stats" aria-label="Project traction" data-i18n-attr="aria-label:project.quickjump.statsAria">
+            <div class="quickjump-stat quickjump-stat--users">
+              <dt data-i18n="project.quickjump.statUsers">Users</dt>
+              <dd>500+</dd>
+            </div>
+            <div class="quickjump-stat quickjump-stat--rating">
+              <dt data-i18n="project.quickjump.statRating">Store rating</dt>
+              <dd>
+                <span class="quickjump-rating-dial" aria-label="5.0 out of 5 store rating" data-i18n-attr="aria-label:project.quickjump.ratingAria">
+                  <span class="quickjump-rating-dial__score">5.0</span>
+                </span>
+              </dd>
+            </div>
+            <div class="quickjump-stat quickjump-stat--stars">
+              <dt data-i18n="project.quickjump.statStars">GitHub stars</dt>
+              <dd>72</dd>
+            </div>
+          </dl>
+
+          <span class="contact-anchor" id="contact" aria-hidden="true"></span>
+          <div class="quickjump-actions">
+            <button class="is-active" type="button" data-showcase-tab="platforms" data-i18n="project.quickjump.platformsLink">Supported platforms</button>
+            <button type="button" data-showcase-tab="demo" data-i18n="project.quickjump.demoLink">Demo</button>
+            <a href="https://www.aichatjump.click/" target="_blank" rel="noopener noreferrer" data-i18n="project.quickjump.live">Website</a>
+            <a href="https://github.com/JASON-QWeb/AiChat-QuickJump" target="_blank" rel="noopener noreferrer" data-i18n="project.quickjump.github">Github</a>
           </div>
         </article>
       </section>

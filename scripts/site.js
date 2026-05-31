@@ -70,6 +70,8 @@
     document.querySelectorAll("[data-i18n-attr]").forEach(function (element) {
       applyTranslatedAttributes(element, i18n, language);
     });
+
+    syncShowcaseWindowTitles();
   }
 
   function initLanguage() {
@@ -117,11 +119,28 @@
     var desktopQuery = window.matchMedia("(min-width: 641px)");
     var projectSections = Array.prototype.slice.call(document.querySelectorAll('[data-section="project"]'));
     var finalSection = projectSections[projectSections.length - 1];
+    var lightProjectIds = {
+      codezero: true,
+      purrpilot: true
+    };
     var ticking = false;
 
     function syncState() {
       var isMobileScrolled = mobileQuery.matches && window.scrollY > 18;
       var isFinalSectionActive = false;
+      var activeProjectId = "";
+      var headerProbeY = Math.min(84, window.innerHeight * .14);
+
+      projectSections.some(function (section) {
+        var rect = section.getBoundingClientRect();
+        var isAtHeader = rect.top <= headerProbeY && rect.bottom > headerProbeY;
+
+        if (isAtHeader) {
+          activeProjectId = section.getAttribute("data-project") || "";
+        }
+
+        return isAtHeader;
+      });
 
       if (desktopQuery.matches && finalSection) {
         var rect = finalSection.getBoundingClientRect();
@@ -133,6 +152,7 @@
 
       root.classList.toggle("is-mobile-scrolled", isMobileScrolled);
       root.classList.toggle("is-final-section-active", isFinalSectionActive);
+      root.classList.toggle("is-light-section-active", !!lightProjectIds[activeProjectId]);
       ticking = false;
     }
 
@@ -158,9 +178,128 @@
     }
   }
 
+  function loadShowcaseMedia(panel) {
+    if (!panel) {
+      return;
+    }
+
+    var image = panel.querySelector("[data-demo-src]");
+
+    if (!image || image.dataset.mediaLoaded === "true") {
+      return;
+    }
+
+    var source = image.getAttribute("data-demo-src");
+
+    if (!source) {
+      return;
+    }
+
+    panel.classList.add("is-media-loading");
+
+    image.addEventListener("load", function () {
+      panel.classList.remove("is-media-loading");
+      panel.classList.add("is-media-loaded");
+      image.dataset.mediaLoaded = "true";
+    }, { once: true });
+
+    image.addEventListener("error", function () {
+      panel.classList.remove("is-media-loading");
+      panel.classList.add("is-media-error");
+    }, { once: true });
+
+    image.setAttribute("src", source);
+  }
+
+  function updateShowcaseWindowTitle(showcase, panel) {
+    var title = showcase.querySelector("[data-showcase-window-title]");
+    var titleKey = panel && panel.getAttribute("data-showcase-title-key");
+    var language = document.documentElement.dataset.language || (config.i18n && config.i18n.defaultLanguage);
+
+    if (title && titleKey && config.i18n) {
+      title.textContent = getTranslation(config.i18n, language, titleKey);
+    }
+  }
+
+  function syncShowcaseWindowTitles() {
+    document.querySelectorAll("[data-project-showcase]").forEach(function (showcase) {
+      updateShowcaseWindowTitle(showcase, showcase.querySelector("[data-showcase-panel].is-active"));
+    });
+  }
+
+  function scheduleShowcaseMediaPreload(showcase) {
+    var intro = config.intro || {};
+    var delayMs = (intro.totalDurationMs || 0) + 320;
+
+    window.setTimeout(function () {
+      var loadAll = function () {
+        showcase.querySelectorAll("[data-showcase-panel]").forEach(loadShowcaseMedia);
+      };
+
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(loadAll, { timeout: 2600 });
+      } else {
+        window.setTimeout(loadAll, 450);
+      }
+    }, delayMs);
+  }
+
+  function initProjectShowcase() {
+    document.querySelectorAll("[data-project-showcase]").forEach(function (showcase) {
+      var section = showcase.closest("[data-section]");
+      var controlsRoot = section || document;
+      var controls = Array.prototype.slice.call(controlsRoot.querySelectorAll("[data-showcase-tab]"));
+      var panels = Array.prototype.slice.call(showcase.querySelectorAll("[data-showcase-panel]"));
+
+      function activateShowcase(targetId, shouldLoadMedia) {
+        var activePanel = null;
+
+        controls.forEach(function (control) {
+          var isActive = control.getAttribute("data-showcase-tab") === targetId;
+
+          control.classList.toggle("is-active", isActive);
+          control.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+
+        panels.forEach(function (panel) {
+          var isActive = panel.getAttribute("data-showcase-panel") === targetId;
+
+          panel.classList.toggle("is-active", isActive);
+          panel.hidden = !isActive;
+          panel.setAttribute("aria-hidden", isActive ? "false" : "true");
+
+          if (isActive) {
+            activePanel = panel;
+          }
+        });
+
+        updateShowcaseWindowTitle(showcase, activePanel);
+
+        if (shouldLoadMedia) {
+          loadShowcaseMedia(activePanel);
+        }
+      }
+
+      controls.forEach(function (control) {
+        control.addEventListener("click", function () {
+          activateShowcase(control.getAttribute("data-showcase-tab"), true);
+        });
+      });
+
+      var activePanel = showcase.querySelector("[data-showcase-panel].is-active") || panels[0];
+
+      if (activePanel) {
+        activateShowcase(activePanel.getAttribute("data-showcase-panel"), false);
+      }
+
+      scheduleShowcaseMediaPreload(showcase);
+    });
+  }
+
   function init() {
     initLanguage();
     syncProjectSections(config.projects || []);
+    initProjectShowcase();
     initScrollChrome();
 
     if (window.JasonQIntro && config.intro) {
