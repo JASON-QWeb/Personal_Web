@@ -121,7 +121,8 @@
     var finalSection = projectSections[projectSections.length - 1];
     var lightProjectIds = {
       codezero: true,
-      purrpilot: true
+      purrpilot: true,
+      "table-data-clean": true
     };
     var ticking = false;
 
@@ -183,53 +184,89 @@
       return;
     }
 
-    var image = panel.querySelector("[data-demo-src]");
+    var images = Array.prototype.slice.call(panel.querySelectorAll("[data-demo-src]"));
 
-    if (!image || image.dataset.mediaLoaded === "true") {
+    if (!images.length || images.every(function (image) {
+      return image.dataset.mediaLoaded === "true";
+    })) {
       return;
     }
 
-    var source = image.getAttribute("data-demo-src");
+    var pending = 0;
+    var hasError = false;
 
-    if (!source) {
+    function completeImage(isError) {
+      hasError = hasError || isError;
+      pending -= 1;
+
+      if (pending > 0) {
+        return;
+      }
+
+      panel.classList.remove("is-media-loading");
+      panel.classList.toggle("is-media-error", hasError);
+      panel.classList.toggle("is-media-loaded", !hasError);
+    }
+
+    images.forEach(function (image) {
+      var source = image.getAttribute("data-demo-src");
+
+      if (!source || image.dataset.mediaLoaded === "true") {
+        return;
+      }
+
+      pending += 1;
+      image.addEventListener("load", function () {
+        image.dataset.mediaLoaded = "true";
+        completeImage(false);
+      }, { once: true });
+
+      image.addEventListener("error", function () {
+        completeImage(true);
+      }, { once: true });
+
+      image.setAttribute("src", source);
+    });
+
+    if (!pending) {
       return;
     }
 
     panel.classList.add("is-media-loading");
-
-    image.addEventListener("load", function () {
-      panel.classList.remove("is-media-loading");
-      panel.classList.add("is-media-loaded");
-      image.dataset.mediaLoaded = "true";
-    }, { once: true });
-
-    image.addEventListener("error", function () {
-      panel.classList.remove("is-media-loading");
-      panel.classList.add("is-media-error");
-    }, { once: true });
-
-    image.setAttribute("src", source);
   }
 
-  function getIntroPreloadDelay() {
+  function scheduleAfterIntroStart(callback, timeoutMs) {
     var intro = config.intro || {};
-    var introDuration = intro.totalDurationMs || 0;
+    var loadedClass = intro.loadedClass || "is-loaded";
+    var delay = typeof intro.projectPreloadDelayMs === "number" ? intro.projectPreloadDelayMs : 360;
+    var didSchedule = false;
 
-    if (!introDuration) {
-      return 1200;
+    function schedule() {
+      if (didSchedule) {
+        return;
+      }
+
+      didSchedule = true;
+
+      window.setTimeout(function () {
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(callback, { timeout: timeoutMs || 2200 });
+        } else {
+          window.setTimeout(callback, 320);
+        }
+      }, delay);
     }
 
-    return Math.max(1400, Math.min(introDuration - 1400, 2600));
+    if (document.documentElement.classList.contains(loadedClass)) {
+      schedule();
+      return;
+    }
+
+    window.addEventListener("jasonq:intro-start", schedule, { once: true });
   }
 
   function scheduleDuringIntro(callback, timeoutMs) {
-    window.setTimeout(function () {
-      if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(callback, { timeout: timeoutMs || 2200 });
-      } else {
-        window.setTimeout(callback, 320);
-      }
-    }, getIntroPreloadDelay());
+    scheduleAfterIntroStart(callback, timeoutMs);
   }
 
   function updateShowcaseWindowTitle(showcase, panel) {
@@ -250,8 +287,45 @@
 
   function scheduleShowcaseMediaPreload(showcase) {
     scheduleDuringIntro(function () {
-      showcase.querySelectorAll("[data-showcase-panel]").forEach(loadShowcaseMedia);
+      var preloadMode = showcase.getAttribute("data-showcase-preload") || "all";
+      var panels = preloadMode === "active"
+        ? [showcase.querySelector("[data-showcase-panel].is-active")]
+        : Array.prototype.slice.call(showcase.querySelectorAll("[data-showcase-panel]"));
+
+      panels.filter(Boolean).forEach(loadShowcaseMedia);
     }, 2400);
+  }
+
+  function initLazyProjectBackgrounds() {
+    scheduleDuringIntro(function () {
+      var sections = Array.prototype.slice.call(document.querySelectorAll("[data-lazy-project-bg]"));
+
+      function loadSectionBackground(section) {
+        section.classList.add("is-project-assets-ready");
+      }
+
+      if (!("IntersectionObserver" in window)) {
+        sections.forEach(loadSectionBackground);
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          loadSectionBackground(entry.target);
+          observer.unobserve(entry.target);
+        });
+      }, {
+        rootMargin: "260px 0px"
+      });
+
+      sections.forEach(function (section) {
+        observer.observe(section);
+      });
+    }, 2200);
   }
 
   function initProjectShowcase() {
@@ -309,6 +383,7 @@
   function init() {
     initLanguage();
     syncProjectSections(config.projects || []);
+    initLazyProjectBackgrounds();
     initProjectShowcase();
     initScrollChrome();
 

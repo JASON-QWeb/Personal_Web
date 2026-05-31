@@ -33,20 +33,24 @@
 
   .project-section--codezero,
   .project-section--purrpilot,
-  .project-section--quickjump {
+  .project-section--quickjump,
+  .project-section--dataclean {
     min-height: auto;
   }
 
-  .quickjump-copy {
+  .quickjump-copy,
+  .dataclean-copy {
     order: -1;
     max-width: none;
   }
 
-  .quickjump-copy h2 {
+  .quickjump-copy h2,
+  .dataclean-copy h2 {
     max-width: 10em;
   }
 
-  .quickjump-stats {
+  .quickjump-stats,
+  .dataclean-stats {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -281,13 +285,25 @@
     padding: 86px var(--pad) 48px;
   }
 
+  .project-section--dataclean {
+    gap: 32px;
+    padding: 86px var(--pad) 48px;
+  }
+
   .quickjump-copy h2 {
     margin-top: 14px;
     font-size: clamp(44px, 14.5vw, 62px);
     line-height: .9;
   }
 
-  .quickjump-copy p {
+  .dataclean-copy h2 {
+    margin-top: 14px;
+    font-size: clamp(42px, 13.5vw, 60px);
+    line-height: .92;
+  }
+
+  .quickjump-copy p,
+  .dataclean-copy > p {
     margin-top: 18px;
     font-size: 16px;
     line-height: 1.35;
@@ -299,31 +315,37 @@
     white-space: nowrap;
   }
 
-  .quickjump-features {
+  .quickjump-features,
+  .dataclean-features {
     gap: 10px;
     margin-top: 20px;
   }
 
-  .quickjump-features div {
+  .quickjump-features div,
+  .dataclean-features div {
     min-height: 66px;
     padding: 0 0 10px 40px;
   }
 
-  .quickjump-features div::before {
+  .quickjump-features div::before,
+  .dataclean-features div::before {
     width: 24px;
     font-size: 10px;
   }
 
-  .quickjump-features div::after {
+  .quickjump-features div::after,
+  .dataclean-features div::after {
     left: 30px;
     bottom: 12px;
   }
 
-  .quickjump-features strong {
+  .quickjump-features strong,
+  .dataclean-features strong {
     font-size: 14px;
   }
 
-  .quickjump-features span {
+  .quickjump-features span,
+  .dataclean-features span {
     font-size: 13px;
   }
 
@@ -333,7 +355,14 @@
     margin-top: 24px;
   }
 
-  .quickjump-stat {
+  .dataclean-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .quickjump-stat,
+  .dataclean-stats div {
     min-height: 0;
     padding: 0;
     gap: 5px;
@@ -343,11 +372,13 @@
     gap: 8px;
   }
 
-  .quickjump-stat dt {
+  .quickjump-stat dt,
+  .dataclean-stats dt {
     font-size: 9px;
   }
 
-  .quickjump-stats dd {
+  .quickjump-stats dd,
+  .dataclean-stats dd {
     margin: 0;
     font-size: 19px;
   }
@@ -365,47 +396,73 @@
     font-size: 16px;
   }
 
-  .quickjump-actions {
+  .quickjump-actions,
+  .dataclean-actions {
     gap: 12px 18px;
     margin-top: 24px;
   }
 
   .quickjump-actions a,
-  .quickjump-actions button {
+  .quickjump-actions button,
+  .dataclean-actions a,
+  .dataclean-actions button {
     min-height: 26px;
     padding: 0 0 4px;
     font-size: 13px;
   }
 
-  .quickjump-showcase {
+  .quickjump-showcase,
+  .dataclean-showcase {
     display: block;
   }
 
-  .quickjump-stage {
+  .quickjump-stage,
+  .dataclean-stage {
     height: auto;
     min-height: 0;
   }
 
-  .quickjump-browser {
+  .quickjump-browser,
+  .dataclean-browser {
     grid-template-rows: 36px minmax(0, 1fr);
     height: 292px;
     min-height: 0;
   }
 
-  .quickjump-browser__top {
+  .quickjump-browser__top,
+  .dataclean-browser__top {
     min-height: 36px;
     padding: 0 10px;
     font-size: 10px;
   }
 
-  .quickjump-browser__top span {
+  .quickjump-browser__top span,
+  .dataclean-browser__top span {
     width: 8px;
     height: 8px;
   }
 
   .quickjump-media--demo img,
-  .quickjump-media--platforms img {
+  .quickjump-media--platforms img,
+  .dataclean-media img {
     padding: 8px;
+  }
+
+  .dataclean-media--processing img,
+  .dataclean-media--report img {
+    max-width: calc(100% - 16px);
+    max-height: calc(100% - 16px);
+  }
+
+  .dataclean-model-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+  }
+
+  .dataclean-model-grid img {
+    max-height: 132px;
   }
 
   .timeline-item strong {

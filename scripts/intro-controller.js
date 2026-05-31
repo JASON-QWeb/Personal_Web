@@ -11,41 +11,77 @@
 
   function addLoadedState(root, config) {
     root.classList.add(config.loadedClass);
+    window.dispatchEvent(new CustomEvent("jasonq:intro-start"));
 
     completionTimer = window.setTimeout(function () {
       root.classList.add(config.completeClass);
     }, config.totalDurationMs);
   }
 
-  function waitForHeroImage(heroImage, config, callback) {
-    if (!heroImage) {
+  function getInitialImages(config) {
+    var selectors = config.initialImageSelectors || [config.heroImageSelector];
+    var images = [];
+
+    selectors.forEach(function (selector) {
+      if (!selector) {
+        return;
+      }
+
+      document.querySelectorAll(selector).forEach(function (image) {
+        if (images.indexOf(image) === -1) {
+          images.push(image);
+        }
+      });
+    });
+
+    return images;
+  }
+
+  function waitForInitialImages(config, callback) {
+    var images = getInitialImages(config);
+    var remaining = images.length;
+    var isDone = false;
+    var fallback;
+
+    function finish() {
+      if (isDone) {
+        return;
+      }
+
+      isDone = true;
+      window.clearTimeout(fallback);
+      window.setTimeout(callback, config.imageReadyDelayMs);
+    }
+
+    function settle() {
+      remaining -= 1;
+
+      if (remaining <= 0) {
+        finish();
+      }
+    }
+
+    if (!images.length) {
       callback();
       return;
     }
 
-    if (heroImage.complete) {
-      window.setTimeout(callback, config.imageReadyDelayMs);
-      return;
-    }
+    fallback = window.setTimeout(finish, config.imageTimeoutMs);
 
-    var fallback = window.setTimeout(callback, config.imageTimeoutMs);
+    images.forEach(function (image) {
+      if (image.complete) {
+        settle();
+        return;
+      }
 
-    heroImage.addEventListener("load", function () {
-      window.clearTimeout(fallback);
-      window.setTimeout(callback, config.imageReadyDelayMs);
-    }, { once: true });
-
-    heroImage.addEventListener("error", function () {
-      window.clearTimeout(fallback);
-      callback();
-    }, { once: true });
+      image.addEventListener("load", settle, { once: true });
+      image.addEventListener("error", settle, { once: true });
+    });
   }
 
   window.JasonQIntro = {
     init: function init(config) {
       var root = document.documentElement;
-      var heroImage = document.querySelector(config.heroImageSelector);
-
       resetIntroState(root, config);
 
       if (config.waitForHeroImage === false) {
@@ -55,7 +91,7 @@
         return;
       }
 
-      waitForHeroImage(heroImage, config, function () {
+      waitForInitialImages(config, function () {
         addLoadedState(root, config);
       });
     }
