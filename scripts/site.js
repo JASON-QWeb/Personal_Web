@@ -216,6 +216,7 @@
       }
 
       pending += 1;
+      image.setAttribute("loading", "eager");
       image.addEventListener("load", function () {
         image.dataset.mediaLoaded = "true";
         completeImage(false);
@@ -287,67 +288,14 @@
 
   function scheduleShowcaseMediaPreload(showcase) {
     scheduleDuringIntro(function () {
-      var section = showcase.closest("[data-section]");
-
-      function loadConfiguredPanels() {
-        var preloadMode = showcase.getAttribute("data-showcase-preload") || "all";
-        var panels = preloadMode === "active"
-          ? [showcase.querySelector("[data-showcase-panel].is-active")]
-          : Array.prototype.slice.call(showcase.querySelectorAll("[data-showcase-panel]"));
-
-        panels.filter(Boolean).forEach(loadShowcaseMedia);
-      }
-
-      if (!section || !("IntersectionObserver" in window)) {
-        loadConfiguredPanels();
-        return;
-      }
-
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          loadConfiguredPanels();
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "360px 0px"
-      });
-
-      observer.observe(section);
+      showcase.querySelectorAll("[data-showcase-panel]").forEach(loadShowcaseMedia);
     }, 2400);
   }
 
   function initLazyProjectBackgrounds() {
     scheduleDuringIntro(function () {
-      var sections = Array.prototype.slice.call(document.querySelectorAll("[data-lazy-project-bg]"));
-
-      function loadSectionBackground(section) {
+      document.querySelectorAll("[data-lazy-project-bg]").forEach(function (section) {
         section.classList.add("is-project-assets-ready");
-      }
-
-      if (!("IntersectionObserver" in window)) {
-        sections.forEach(loadSectionBackground);
-        return;
-      }
-
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          loadSectionBackground(entry.target);
-          observer.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "260px 0px"
-      });
-
-      sections.forEach(function (section) {
-        observer.observe(section);
       });
     }, 2200);
   }
