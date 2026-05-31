@@ -287,12 +287,36 @@
 
   function scheduleShowcaseMediaPreload(showcase) {
     scheduleDuringIntro(function () {
-      var preloadMode = showcase.getAttribute("data-showcase-preload") || "all";
-      var panels = preloadMode === "active"
-        ? [showcase.querySelector("[data-showcase-panel].is-active")]
-        : Array.prototype.slice.call(showcase.querySelectorAll("[data-showcase-panel]"));
+      var section = showcase.closest("[data-section]");
 
-      panels.filter(Boolean).forEach(loadShowcaseMedia);
+      function loadConfiguredPanels() {
+        var preloadMode = showcase.getAttribute("data-showcase-preload") || "all";
+        var panels = preloadMode === "active"
+          ? [showcase.querySelector("[data-showcase-panel].is-active")]
+          : Array.prototype.slice.call(showcase.querySelectorAll("[data-showcase-panel]"));
+
+        panels.filter(Boolean).forEach(loadShowcaseMedia);
+      }
+
+      if (!section || !("IntersectionObserver" in window)) {
+        loadConfiguredPanels();
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          loadConfiguredPanels();
+          observer.unobserve(entry.target);
+        });
+      }, {
+        rootMargin: "360px 0px"
+      });
+
+      observer.observe(section);
     }, 2400);
   }
 
