@@ -22,6 +22,16 @@ html.is-pet-active .pet-runner {
   opacity: 1;
   pointer-events: auto;
   visibility: visible;
+  cursor: grab;
+  touch-action: none;
+}
+
+.pet-runner.is-dragging {
+  cursor: grabbing;
+}
+
+.pet-runner.is-dragging .pet-runner__sprite {
+  transition: none;
 }
 
 .pet-runner__sprite {

@@ -535,7 +535,7 @@
 }
 
 .quickjump-features div::before {
-  content: counter(quickjump-feature, decimal-leading-zero);
+  content: counter(quickjump-feature, upper-roman);
   position: absolute;
   top: 1px;
   left: 0;

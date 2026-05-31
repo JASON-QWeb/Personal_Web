@@ -10,6 +10,8 @@
   var isDestroyed = false;
   var isActive = false;
   var isHovered = false;
+  var isDragging = false;
+  var dragOffsetX = 0;
   var hasScrolledAfterLoad = false;
   var hasUserScrollIntent = false;
   var activeRunId = 0;
@@ -145,9 +147,9 @@
 
     if (shouldResetPosition) {
       setX(MIN_X);
+      root.dataset.petDirection = "right";
     }
 
-    root.dataset.petDirection = "right";
     root.dataset.petState = "idle";
     await wait(typeof firstDelay === "number" ? firstDelay : 900);
 
@@ -239,6 +241,8 @@
   }
 
   function pauseForInteraction(event) {
+    if (isDragging) return;
+
     if (event && event.pointerType === "touch") {
       pauseForTap();
       return;
@@ -255,7 +259,7 @@
   function pauseForTap() {
     var tapRunId;
 
-    if (!isActive || prefersReducedMotion.matches) {
+    if (!isActive || isDragging || prefersReducedMotion.matches) {
       return;
     }
 
@@ -274,7 +278,7 @@
   }
 
   function resumeAfterHover() {
-    if (!isActive || !isHovered || prefersReducedMotion.matches) {
+    if (!isActive || !isHovered || isDragging || prefersReducedMotion.matches) {
       return;
     }
 
@@ -283,6 +287,48 @@
     activeRunId += 1;
     root.dataset.petState = "idle";
     startLoop(false, 160);
+  }
+
+  function handleDragStart(event) {
+    if (!isActive || !root) return;
+
+    event.preventDefault();
+    isDragging = true;
+    window.clearTimeout(tapResumeTimer);
+    isHovered = true;
+    activeRunId += 1;
+    loopStarted = false;
+
+    var scale = getScale();
+    var petScreenX = x;
+    dragOffsetX = event.clientX - petScreenX;
+
+    root.dataset.petState = "act";
+    root.classList.add("is-dragging");
+    root.setPointerCapture(event.pointerId);
+  }
+
+  function handleDragMove(event) {
+    if (!isDragging) return;
+
+    var newX = event.clientX - dragOffsetX;
+    setX(newX);
+  }
+
+  function handleDragEnd(event) {
+    if (!isDragging) return;
+
+    isDragging = false;
+    root.classList.remove("is-dragging");
+
+    if (root.hasPointerCapture && root.hasPointerCapture(event.pointerId)) {
+      root.releasePointerCapture(event.pointerId);
+    }
+
+    isHovered = false;
+    activeRunId += 1;
+    root.dataset.petState = "idle";
+    startLoop(false, 800);
   }
 
   function initScrollVisibility() {
@@ -372,11 +418,18 @@
     document.body.appendChild(root);
     root.addEventListener("pointerenter", pauseForInteraction);
     root.addEventListener("pointerover", pauseForInteraction);
-    root.addEventListener("pointerdown", pauseForTap);
-    root.addEventListener("pointerleave", resumeAfterHover);
+    root.addEventListener("pointerdown", handleDragStart);
+    root.addEventListener("pointermove", handleDragMove);
+    root.addEventListener("pointerup", handleDragEnd);
+    root.addEventListener("pointercancel", handleDragEnd);
+    root.addEventListener("pointerleave", function (event) {
+      if (!isDragging) resumeAfterHover();
+    });
     root.addEventListener("mouseenter", pauseForInteraction);
     root.addEventListener("mouseover", pauseForInteraction);
-    root.addEventListener("mouseleave", resumeAfterHover);
+    root.addEventListener("mouseleave", function () {
+      if (!isDragging) resumeAfterHover();
+    });
 
     syncScale();
     scheduleSpritePreload();
