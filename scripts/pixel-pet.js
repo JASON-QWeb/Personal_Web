@@ -13,8 +13,10 @@
   var hasScrolledAfterLoad = false;
   var hasUserScrollIntent = false;
   var activeRunId = 0;
+  var tapResumeTimer = 0;
   var spritePreload = null;
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var hoverPointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
 
   function getScale() {
     if (window.innerWidth <= 640) {
@@ -82,7 +84,7 @@
           return;
         }
 
-        if (root.matches(":hover")) {
+        if (hoverPointerQuery.matches && root.matches(":hover")) {
           pauseForHover();
           resolve(false);
           return;
@@ -182,6 +184,7 @@
     document.documentElement.classList.toggle("is-pet-active", nextActive);
 
     if (!nextActive) {
+      window.clearTimeout(tapResumeTimer);
       isHovered = false;
       root.dataset.petState = "idle";
       loopStarted = false;
@@ -228,10 +231,46 @@
       return;
     }
 
+    window.clearTimeout(tapResumeTimer);
     isHovered = true;
     activeRunId += 1;
     loopStarted = false;
     root.dataset.petState = "act";
+  }
+
+  function pauseForInteraction(event) {
+    if (event && event.pointerType === "touch") {
+      pauseForTap();
+      return;
+    }
+
+    if (!hoverPointerQuery.matches) {
+      pauseForTap();
+      return;
+    }
+
+    pauseForHover();
+  }
+
+  function pauseForTap() {
+    var tapRunId;
+
+    if (!isActive || prefersReducedMotion.matches) {
+      return;
+    }
+
+    window.clearTimeout(tapResumeTimer);
+    isHovered = true;
+    activeRunId += 1;
+    loopStarted = false;
+    root.dataset.petState = "act";
+    tapRunId = activeRunId;
+
+    tapResumeTimer = window.setTimeout(function () {
+      if (isActive && isHovered && activeRunId === tapRunId) {
+        resumeAfterHover();
+      }
+    }, 1500);
   }
 
   function resumeAfterHover() {
@@ -239,6 +278,7 @@
       return;
     }
 
+    window.clearTimeout(tapResumeTimer);
     isHovered = false;
     activeRunId += 1;
     root.dataset.petState = "idle";
@@ -330,11 +370,12 @@
     sprite.className = "pet-runner__sprite";
     root.appendChild(sprite);
     document.body.appendChild(root);
-    root.addEventListener("pointerenter", pauseForHover);
-    root.addEventListener("pointerover", pauseForHover);
+    root.addEventListener("pointerenter", pauseForInteraction);
+    root.addEventListener("pointerover", pauseForInteraction);
+    root.addEventListener("pointerdown", pauseForTap);
     root.addEventListener("pointerleave", resumeAfterHover);
-    root.addEventListener("mouseenter", pauseForHover);
-    root.addEventListener("mouseover", pauseForHover);
+    root.addEventListener("mouseenter", pauseForInteraction);
+    root.addEventListener("mouseover", pauseForInteraction);
     root.addEventListener("mouseleave", resumeAfterHover);
 
     syncScale();
