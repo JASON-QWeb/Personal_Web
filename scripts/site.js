@@ -179,6 +179,12 @@
     }
   }
 
+  function isImageLoaded(image) {
+    var source = image.getAttribute("data-demo-src");
+
+    return !!source && image.dataset.mediaLoaded === "true" && image.getAttribute("src") === source;
+  }
+
   function loadShowcaseMedia(panel) {
     if (!panel) {
       return;
@@ -186,11 +192,17 @@
 
     var images = Array.prototype.slice.call(panel.querySelectorAll("[data-demo-src]"));
 
-    if (!images.length || images.every(function (image) {
-      return image.dataset.mediaLoaded === "true";
-    })) {
+    if (!images.length) {
       return;
     }
+
+    if (images.every(isImageLoaded)) {
+      panel.classList.remove("is-media-loading", "is-media-error");
+      panel.classList.add("is-media-loaded");
+      return;
+    }
+
+    panel.classList.remove("is-media-loaded", "is-media-error");
 
     var pending = 0;
     var hasError = false;
@@ -211,18 +223,28 @@
     images.forEach(function (image) {
       var source = image.getAttribute("data-demo-src");
 
-      if (!source || image.dataset.mediaLoaded === "true") {
+      if (!source || isImageLoaded(image)) {
         return;
       }
 
       pending += 1;
+      image.dataset.mediaLoaded = "loading";
       image.setAttribute("loading", "eager");
       image.addEventListener("load", function () {
+        if (image.getAttribute("src") !== source) {
+          return;
+        }
+
         image.dataset.mediaLoaded = "true";
         completeImage(false);
       }, { once: true });
 
       image.addEventListener("error", function () {
+        if (image.getAttribute("src") !== source) {
+          return;
+        }
+
+        image.dataset.mediaLoaded = "false";
         completeImage(true);
       }, { once: true });
 

@@ -199,45 +199,147 @@
         data-section="project"
         data-project="purrpilot"
         data-lazy-project-bg
-        aria-label="Project 02: PurrPilot"
+        aria-label="Project 02: MeowPilot"
         data-i18n-attr="aria-label:project.purrpilot.aria"
       >
-        <div class="project-visual project-visual--purrpilot" aria-label="PurrPilot demo reserved" data-i18n-attr="aria-label:project.purrpilot.visualAria">
-          <div class="purrpilot-demo-shell" aria-hidden="true">
-            <div class="purrpilot-demo-shell__top">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div class="purrpilot-demo-shell__body">
-              <i></i>
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-          </div>
-        </div>
-
         <article class="project-copy project-copy--purrpilot">
-          <span class="project-kicker" data-i18n="project.purrpilot.badge">02 / Playful Product</span>
-          <h2 class="project-title project-title--purrpilot" data-i18n="project.purrpilot.title">PurrPilot</h2>
-          <p data-i18n="project.purrpilot.copy">A cheerful project space for PurrPilot, with a demo area reserved for the next product preview.</p>
+          <span class="project-kicker" data-i18n="project.purrpilot.badge">02 / Desktop AI Pet</span>
+          <h2 class="project-title project-title--purrpilot" data-i18n="project.purrpilot.title">MeowPilot</h2>
+          <p data-i18n="project.purrpilot.copy">A Mac desktop AI pet for everyday companionship, combining text and voice chat, workday interaction, and social growth.</p>
 
-          <div class="project-points" aria-label="PurrPilot focus" data-i18n-attr="aria-label:project.purrpilot.pointsAria">
-            <div>
-              <strong data-i18n="project.purrpilot.pointOne">Bright personality</strong>
-              <span data-i18n="project.purrpilot.pointOneCopy">Soft color, playful rhythm, and friendly motion cues keep the section light.</span>
+          <div class="purrpilot-features" aria-label="MeowPilot focus" data-i18n-attr="aria-label:project.purrpilot.pointsAria">
+            <div data-feature-code="PET">
+              <strong data-i18n="project.purrpilot.pointOne">Personal AI pet</strong>
+              <span data-i18n="project.purrpilot.pointOneCopy">Own AI the way you raise a pet: quiet companionship by default, one click to open the full capability center.</span>
             </div>
-            <div>
-              <strong data-i18n="project.purrpilot.pointTwo">Demo reserved</strong>
-              <span data-i18n="project.purrpilot.pointTwoCopy">The preview shell is ready for screenshots, GIFs, or an embedded product clip.</span>
+            <div data-feature-code="A2UI">
+              <strong data-i18n="project.purrpilot.pointTwo">A2UI Cards</strong>
+              <span data-i18n="project.purrpilot.pointTwoCopy">More than text replies. Chat can generate music, video, images, reminders, weather cards, and live status panels.</span>
             </div>
-            <div>
-              <strong data-i18n="project.purrpilot.pointThree">Expandable story</strong>
-              <span data-i18n="project.purrpilot.pointThreeCopy">Future feature notes and launch links can be added without changing the section.</span>
+            <div data-feature-code="SOCIAL">
+              <strong data-i18n="project.purrpilot.pointThree">Skill exchange</strong>
+              <span data-i18n="project.purrpilot.pointThreeCopy">Exchange Skills with friends so MeowPilot grows through shared abilities, social workflows, and daily use.</span>
             </div>
           </div>
         </article>
+
+        <div class="purrpilot-showcase" data-project-showcase aria-label="MeowPilot demos" data-i18n-attr="aria-label:project.purrpilot.visualAria">
+          <div class="purrpilot-stage" aria-live="polite">
+            <div class="purrpilot-browser">
+              <div class="purrpilot-browser__top">
+                <span></span><span></span><span></span>
+                <p data-showcase-window-title data-i18n="project.purrpilot.dashboardWindow">meow-pilot / workspace</p>
+              </div>
+
+              <figure
+                class="purrpilot-media is-active"
+                id="purrpilot-panel-dashboard"
+                data-showcase-panel="dashboard"
+                data-showcase-title-key="project.purrpilot.dashboardWindow"
+              >
+                <div class="purrpilot-media__loader" data-i18n="project.purrpilot.mediaLoading">Loading demo...</div>
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                  data-demo-src="/purrpilot/01-basic-dashboard.gif"
+                  data-demo-kind="gif"
+                  alt="MeowPilot workspace dashboard, usage, memory, Skill, and settings demo"
+                  data-i18n-attr="alt:project.purrpilot.dashboardAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <figure
+                class="purrpilot-media"
+                id="purrpilot-panel-cards"
+                data-showcase-panel="cards"
+                data-showcase-title-key="project.purrpilot.cardsWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="purrpilot-media__loader" data-i18n="project.purrpilot.mediaLoading">Loading demo...</div>
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                  data-demo-src="/purrpilot/02-session-media-weather.gif"
+                  data-demo-kind="gif"
+                  alt="MeowPilot session, local media, and weather card demo"
+                  data-i18n-attr="alt:project.purrpilot.cardsAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <figure
+                class="purrpilot-media"
+                id="purrpilot-panel-skills"
+                data-showcase-panel="skills"
+                data-showcase-title-key="project.purrpilot.skillsWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="purrpilot-media__loader" data-i18n="project.purrpilot.mediaLoading">Loading demo...</div>
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                  data-demo-src="/purrpilot/03-skill-exchange.gif"
+                  data-demo-kind="gif"
+                  alt="MeowPilot friend Skill exchange demo"
+                  data-i18n-attr="alt:project.purrpilot.skillsAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <figure
+                class="purrpilot-media"
+                id="purrpilot-panel-custom"
+                data-showcase-panel="custom"
+                data-showcase-title-key="project.purrpilot.customWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="purrpilot-media__loader" data-i18n="project.purrpilot.mediaLoading">Loading demo...</div>
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                  data-demo-src="/purrpilot/04-pet-customization.gif"
+                  data-demo-kind="gif"
+                  alt="MeowPilot pet styling and custom image studio demo"
+                  data-i18n-attr="alt:project.purrpilot.customAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <figure
+                class="purrpilot-media purrpilot-media--quick"
+                id="purrpilot-panel-quick"
+                data-showcase-panel="quick"
+                data-showcase-title-key="project.purrpilot.quickWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="purrpilot-media__loader" data-i18n="project.purrpilot.mediaLoading">Loading demo...</div>
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                  data-demo-src="/purrpilot/05-pet-quick-actions.gif"
+                  data-demo-kind="gif"
+                  alt="MeowPilot desktop pet right-click quick menu demo"
+                  data-i18n-attr="alt:project.purrpilot.quickAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <div class="purrpilot-demo-picker" aria-label="MeowPilot demo selector" data-i18n-attr="aria-label:project.purrpilot.selectorAria">
+                <button class="is-active" type="button" data-showcase-tab="dashboard" data-i18n="project.purrpilot.dashboardLink">Workspace</button>
+                <button type="button" data-showcase-tab="cards" data-i18n="project.purrpilot.cardsLink">A2UI Cards</button>
+                <button type="button" data-showcase-tab="skills" data-i18n="project.purrpilot.skillsLink">Skill Exchange</button>
+                <button type="button" data-showcase-tab="custom" data-i18n="project.purrpilot.customLink">Pet Styling</button>
+                <button type="button" data-showcase-tab="quick" data-i18n="project.purrpilot.quickLink">Quick Menu</button>
+                <a class="purrpilot-demo-picker__github" href="https://github.com/JASON-QWeb/purr-pilot" target="_blank" rel="noopener noreferrer" data-i18n="project.purrpilot.github">Github</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section
@@ -267,6 +369,7 @@
                 <img
                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
                   data-demo-src="/aichat/demo.gif"
+                  data-demo-kind="gif"
                   alt="AI Chat Quick Jump demo"
                   data-i18n-attr="alt:project.quickjump.demoAlt"
                   loading="lazy"
