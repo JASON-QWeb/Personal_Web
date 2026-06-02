@@ -164,32 +164,201 @@
         aria-label="Project 01: CodeZero"
         data-i18n-attr="aria-label:project.codezero.aria"
       >
-        <div class="project-visual project-visual--codezero" aria-label="CodeZero showcase reserved" data-i18n-attr="aria-label:project.codezero.visualAria">
-          <div class="codezero-frame" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="project-visual project-visual--codezero codezero-showcase" data-project-showcase aria-label="CodeZero product demos" data-i18n-attr="aria-label:project.codezero.visualAria">
+          <div class="codezero-stage" aria-live="polite">
+            <div class="codezero-browser">
+              <div class="codezero-browser__top">
+                <span></span><span></span><span></span>
+                <p data-showcase-window-title data-i18n="project.codezero.issueWindow">codezero / Issue to Plan</p>
+              </div>
+
+              <figure
+                class="codezero-media codezero-media--video is-active"
+                id="codezero-panel-issue"
+                data-showcase-panel="issue-to-plan"
+                data-showcase-mode="demo"
+                data-showcase-title-key="project.codezero.issueWindow"
+              >
+                <div class="codezero-media__loader" data-i18n="project.codezero.mediaLoading">Loading CodeZero...</div>
+                <video
+                  data-demo-key="codezero-issue"
+                  data-demo-kind="webm"
+                  aria-label="CodeZero Issue to Plan demo"
+                  data-i18n-attr="aria-label:project.codezero.issueAlt"
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                ></video>
+              </figure>
+
+              <figure
+                class="codezero-media codezero-media--video"
+                id="codezero-panel-pr"
+                data-showcase-panel="plan-to-pr"
+                data-showcase-mode="demo"
+                data-showcase-title-key="project.codezero.prWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="codezero-media__loader" data-i18n="project.codezero.mediaLoading">Loading CodeZero...</div>
+                <video
+                  data-demo-key="codezero-pr"
+                  data-demo-kind="webm"
+                  aria-label="CodeZero Plan to PR demo"
+                  data-i18n-attr="aria-label:project.codezero.prAlt"
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                ></video>
+              </figure>
+
+              <figure
+                class="codezero-media codezero-media--screen"
+                id="codezero-panel-codegraph"
+                data-showcase-panel="codegraph"
+                data-showcase-mode="features"
+                data-showcase-title-key="project.codezero.codegraphWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="codezero-media__loader" data-i18n="project.codezero.mediaLoading">Loading CodeZero...</div>
+                <img
+                  src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="
+                  data-demo-key="codezero-codegraph"
+                  alt="CodeZero CodeGraph screenshot"
+                  data-i18n-attr="alt:project.codezero.codegraphAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <figure
+                class="codezero-media codezero-media--screen"
+                id="codezero-panel-knowledge"
+                data-showcase-panel="knowledge"
+                data-showcase-mode="features"
+                data-showcase-title-key="project.codezero.knowledgeWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="codezero-media__loader" data-i18n="project.codezero.mediaLoading">Loading CodeZero...</div>
+                <img
+                  src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="
+                  data-demo-key="codezero-knowledge"
+                  alt="CodeZero knowledge graph screenshot"
+                  data-i18n-attr="alt:project.codezero.knowledgeAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <figure
+                class="codezero-media codezero-media--screen"
+                id="codezero-panel-config"
+                data-showcase-panel="business-config"
+                data-showcase-mode="features"
+                data-showcase-title-key="project.codezero.configWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="codezero-media__loader" data-i18n="project.codezero.mediaLoading">Loading CodeZero...</div>
+                <img
+                  src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="
+                  data-demo-key="codezero-config"
+                  alt="CodeZero business configuration screenshot"
+                  data-i18n-attr="alt:project.codezero.configAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <figure
+                class="codezero-media codezero-media--screen"
+                id="codezero-panel-repo-board"
+                data-showcase-panel="repo-board"
+                data-showcase-mode="features"
+                data-showcase-title-key="project.codezero.repoBoardWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="codezero-media__loader" data-i18n="project.codezero.mediaLoading">Loading CodeZero...</div>
+                <img
+                  src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="
+                  data-demo-key="codezero-repo-board"
+                  alt="CodeZero repository board screenshot"
+                  data-i18n-attr="alt:project.codezero.repoBoardAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <figure
+                class="codezero-media codezero-media--screen"
+                id="codezero-panel-home-board"
+                data-showcase-panel="home-board"
+                data-showcase-mode="features"
+                data-showcase-title-key="project.codezero.homeBoardWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="codezero-media__loader" data-i18n="project.codezero.mediaLoading">Loading CodeZero...</div>
+                <img
+                  src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="
+                  data-demo-key="codezero-home-board"
+                  alt="CodeZero home board screenshot"
+                  data-i18n-attr="alt:project.codezero.homeBoardAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <div class="codezero-picker">
+                <div class="codezero-picker__group" data-showcase-mode-panel="demo" aria-label="CodeZero demo selector" data-i18n-attr="aria-label:project.codezero.demoSelectorAria">
+                  <button class="is-active" type="button" data-showcase-tab="issue-to-plan" data-i18n="project.codezero.issueLink">Issue to Plan</button>
+                  <button type="button" data-showcase-tab="plan-to-pr" data-i18n="project.codezero.prLink">Plan to PR</button>
+                </div>
+                <div class="codezero-picker__group" data-showcase-mode-panel="features" aria-label="CodeZero core feature selector" data-i18n-attr="aria-label:project.codezero.featureSelectorAria" hidden aria-hidden="true">
+                  <button type="button" data-showcase-tab="codegraph" data-i18n="project.codezero.codegraphLink">CodeGraph</button>
+                  <button type="button" data-showcase-tab="knowledge" data-i18n="project.codezero.knowledgeLink">Knowledge graph</button>
+                  <button type="button" data-showcase-tab="business-config" data-i18n="project.codezero.configLink">Business config</button>
+                  <button type="button" data-showcase-tab="repo-board" data-i18n="project.codezero.repoBoardLink">Repo board</button>
+                  <button type="button" data-showcase-tab="home-board" data-i18n="project.codezero.homeBoardLink">Home board</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <article class="project-copy project-copy--codezero">
           <span class="project-kicker" data-i18n="project.codezero.badge">01 / Enterprise Product</span>
           <h2 class="project-title project-title--codezero" data-i18n="project.codezero.title">CodeZero</h2>
-          <p data-i18n="project.codezero.copy">A blue-white enterprise project slot prepared for CodeZero's product story, screenshots, and case-study details.</p>
+          <p data-i18n="project.codezero.copy">Automation Issue -> PRD -> PR.</p>
 
           <div class="project-points" aria-label="CodeZero focus" data-i18n-attr="aria-label:project.codezero.pointsAria">
             <div>
-              <strong data-i18n="project.codezero.pointOne">Enterprise-first presence</strong>
-              <span data-i18n="project.codezero.pointOneCopy">A calm, structured visual system for technical and business audiences.</span>
+              <strong data-i18n="project.codezero.pointOne">Plan</strong>
+              <span data-i18n="project.codezero.pointOneCopy">Brainstorm-style Skills parse GitHub Issues into structured PRD/Plans with acceptance criteria, risks, file scope, tests, and commands.</span>
             </div>
             <div>
-              <strong data-i18n="project.codezero.pointTwo">Showcase reserved</strong>
-              <span data-i18n="project.codezero.pointTwoCopy">The left-side product display is intentionally empty until final assets are ready.</span>
+              <strong data-i18n="project.codezero.pointTwo">Build</strong>
+              <span data-i18n="project.codezero.pointTwoCopy">LangGraph orchestrates resumable approval loops while an AI coding agent implements changes inside a persistent task sandbox.</span>
             </div>
             <div>
-              <strong data-i18n="project.codezero.pointThree">Case study ready</strong>
-              <span data-i18n="project.codezero.pointThreeCopy">Copy, metrics, and links can be dropped into the same layout later.</span>
+              <strong data-i18n="project.codezero.pointThree">Ship</strong>
+              <span data-i18n="project.codezero.pointThreeCopy">Quality gates run automatically, summarize verification evidence, change notes, and repro steps, then create a reviewable draft PR.</span>
             </div>
+            <div>
+              <strong data-i18n="project.codezero.pointFour">Repo context</strong>
+              <span data-i18n="project.codezero.pointFourCopy">Build CodeGraph and Understand Everything for each repository, with separately configurable business Skill/Rule settings that turn domain knowledge and implementation constraints into dedicated engineering context.</span>
+            </div>
+          </div>
+
+          <div class="codezero-actions">
+            <button class="is-mode-active" type="button" data-showcase-mode-tab="demo" data-showcase-tab="issue-to-plan" data-i18n="project.codezero.demoLink">Demo</button>
+            <button type="button" data-showcase-mode-tab="features" data-showcase-tab="codegraph" data-i18n="project.codezero.coreLink">Core features</button>
+            <a href="https://github.com/JASON-QWeb/CodeZero" target="_blank" rel="noopener noreferrer" data-i18n="project.codezero.github">Github</a>
           </div>
         </article>
       </section>

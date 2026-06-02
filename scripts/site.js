@@ -1,4 +1,27 @@
 var mediaSources = {
+  "codezero-issue": {
+    webm: new URL("../assets/media/codezero/issue-to-plan.webm", import.meta.url).href,
+    mp4: new URL("../assets/media/codezero/issue-to-plan.mp4", import.meta.url).href
+  },
+  "codezero-pr": {
+    webm: new URL("../assets/media/codezero/plan-to-pr.webm", import.meta.url).href,
+    mp4: new URL("../assets/media/codezero/plan-to-pr.mp4", import.meta.url).href
+  },
+  "codezero-codegraph": {
+    image: new URL("../assets/media/codezero/codegraph.png", import.meta.url).href
+  },
+  "codezero-knowledge": {
+    image: new URL("../assets/media/codezero/knowledge-graph.png", import.meta.url).href
+  },
+  "codezero-config": {
+    image: new URL("../assets/media/codezero/business-config.png", import.meta.url).href
+  },
+  "codezero-repo-board": {
+    image: new URL("../assets/media/codezero/repo-board.png", import.meta.url).href
+  },
+  "codezero-home-board": {
+    image: new URL("../assets/media/codezero/home-board.png", import.meta.url).href
+  },
   "purrpilot-dashboard": {
     webm: new URL("../assets/media/purrpilot/01-basic-dashboard.webm", import.meta.url).href,
     mp4: new URL("../assets/media/purrpilot/01-basic-dashboard.mp4", import.meta.url).href
@@ -265,49 +288,19 @@ var mediaSources = {
     return !!source && media.dataset.mediaLoaded === "true" && media.getAttribute("src") === source;
   }
 
-  function loadShowcaseMedia(panel) {
-    if (!panel) {
-      return;
+  function loadMediaItem(media) {
+    var source = getMediaSource(media);
+
+    if (!source || isMediaLoaded(media)) {
+      return Promise.resolve(false);
     }
 
-    var mediaItems = Array.prototype.slice.call(panel.querySelectorAll("[data-demo-key], [data-demo-src]"));
-
-    if (!mediaItems.length) {
-      return;
-    }
-
-    if (mediaItems.every(isMediaLoaded)) {
-      panel.classList.remove("is-media-loading", "is-media-error");
-      panel.classList.add("is-media-loaded");
-      return;
-    }
-
-    panel.classList.remove("is-media-loaded", "is-media-error");
-
-    var pending = 0;
-    var hasError = false;
-
-    function completeMedia(isError) {
-      hasError = hasError || isError;
-      pending -= 1;
-
-      if (pending > 0) {
-        return;
+    return new Promise(function (resolve) {
+      function finish(isError) {
+        media.dataset.mediaLoaded = isError ? "false" : "true";
+        resolve(isError);
       }
 
-      panel.classList.remove("is-media-loading");
-      panel.classList.toggle("is-media-error", hasError);
-      panel.classList.toggle("is-media-loaded", !hasError);
-    }
-
-    mediaItems.forEach(function (media) {
-      var source = getMediaSource(media);
-
-      if (!source || isMediaLoaded(media)) {
-        return;
-      }
-
-      pending += 1;
       media.dataset.mediaLoaded = "loading";
 
       if (isVideoMedia(media)) {
@@ -316,8 +309,7 @@ var mediaSources = {
             return;
           }
 
-          media.dataset.mediaLoaded = "true";
-          completeMedia(false);
+          finish(false);
         }, { once: true });
 
         media.addEventListener("error", function () {
@@ -325,8 +317,7 @@ var mediaSources = {
             return;
           }
 
-          media.dataset.mediaLoaded = "false";
-          completeMedia(true);
+          finish(true);
         }, { once: true });
 
         media.setAttribute("preload", "auto");
@@ -346,8 +337,7 @@ var mediaSources = {
           return;
         }
 
-        media.dataset.mediaLoaded = "true";
-        completeMedia(false);
+        finish(false);
       }, { once: true });
 
       media.addEventListener("error", function () {
@@ -355,18 +345,51 @@ var mediaSources = {
           return;
         }
 
-        media.dataset.mediaLoaded = "false";
-        completeMedia(true);
+        finish(true);
       }, { once: true });
 
       media.setAttribute("src", source);
     });
+  }
 
-    if (!pending) {
-      return;
+  function loadShowcaseMedia(panel) {
+    if (!panel) {
+      return Promise.resolve(false);
     }
 
+    var mediaItems = Array.prototype.slice.call(panel.querySelectorAll("[data-demo-key], [data-demo-src]"));
+
+    if (!mediaItems.length) {
+      return Promise.resolve(false);
+    }
+
+    if (mediaItems.every(isMediaLoaded)) {
+      panel.classList.remove("is-media-loading", "is-media-error");
+      panel.classList.add("is-media-loaded");
+      return Promise.resolve(false);
+    }
+
+    panel.classList.remove("is-media-loaded", "is-media-error");
     panel.classList.add("is-media-loading");
+
+    var hasError = false;
+    var chain = Promise.resolve();
+
+    mediaItems.forEach(function (media) {
+      chain = chain.then(function () {
+        return loadMediaItem(media);
+      }).then(function (isError) {
+        hasError = hasError || isError;
+      });
+    });
+
+    return chain.then(function () {
+      panel.classList.remove("is-media-loading");
+      panel.classList.toggle("is-media-error", hasError);
+      panel.classList.toggle("is-media-loaded", !hasError);
+
+      return hasError;
+    });
   }
 
   function scheduleAfterIntroStart(callback, timeoutMs) {
@@ -419,22 +442,69 @@ var mediaSources = {
     });
   }
 
-  function scheduleShowcaseMediaPreload(showcase) {
+  function syncShowcaseMode(showcase, panel) {
+    var mode = panel && panel.getAttribute("data-showcase-mode");
+    var section = showcase.closest("[data-section]") || showcase;
+
+    if (!mode) {
+      return;
+    }
+
+    section.querySelectorAll("[data-showcase-mode-tab]").forEach(function (control) {
+      var isActive = control.getAttribute("data-showcase-mode-tab") === mode;
+
+      control.classList.toggle("is-mode-active", isActive);
+      control.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+
+    section.querySelectorAll("[data-showcase-mode-panel]").forEach(function (modePanel) {
+      var isActive = modePanel.getAttribute("data-showcase-mode-panel") === mode;
+
+      modePanel.hidden = !isActive;
+      modePanel.setAttribute("aria-hidden", isActive ? "false" : "true");
+    });
+  }
+
+  function getProjectIndex(section) {
+    var order = section && section.getAttribute("data-project-order");
+    var parsed = parseInt(order, 10);
+
+    return Number.isNaN(parsed) ? 999 : parsed;
+  }
+
+  function scheduleOrderedProjectAssetsPreload() {
     scheduleDuringIntro(function () {
-      showcase.querySelectorAll("[data-showcase-panel]").forEach(loadShowcaseMedia);
+      var preloadChain = Promise.resolve();
+      var projectSections = Array.prototype.slice.call(document.querySelectorAll('[data-section="project"]')).sort(function (left, right) {
+        return getProjectIndex(left) - getProjectIndex(right);
+      });
+
+      projectSections.forEach(function (section) {
+        var showcase = section.querySelector("[data-project-showcase]");
+
+        preloadChain = preloadChain.then(function () {
+          if (section.hasAttribute("data-lazy-project-bg")) {
+            section.classList.add("is-project-assets-ready");
+          }
+        });
+
+        if (!showcase) {
+          return;
+        }
+
+        Array.prototype.slice.call(showcase.querySelectorAll("[data-showcase-panel]")).forEach(function (panel) {
+          preloadChain = preloadChain.then(function () {
+            return loadShowcaseMedia(panel);
+          });
+        });
+      });
     }, 2400);
   }
 
-  function initLazyProjectBackgrounds() {
-    scheduleDuringIntro(function () {
-      document.querySelectorAll("[data-lazy-project-bg]").forEach(function (section) {
-        section.classList.add("is-project-assets-ready");
-      });
-    }, 2200);
-  }
-
   function initProjectShowcase() {
-    document.querySelectorAll("[data-project-showcase]").forEach(function (showcase) {
+    var showcases = Array.prototype.slice.call(document.querySelectorAll("[data-project-showcase]"));
+
+    showcases.forEach(function (showcase) {
       var section = showcase.closest("[data-section]");
       var controlsRoot = section || document;
       var controls = Array.prototype.slice.call(controlsRoot.querySelectorAll("[data-showcase-tab]"));
@@ -463,6 +533,7 @@ var mediaSources = {
         });
 
         updateShowcaseWindowTitle(showcase, activePanel);
+        syncShowcaseMode(showcase, activePanel);
 
         if (shouldLoadMedia) {
           loadShowcaseMedia(activePanel);
@@ -480,15 +551,14 @@ var mediaSources = {
       if (activePanel) {
         activateShowcase(activePanel.getAttribute("data-showcase-panel"), false);
       }
-
-      scheduleShowcaseMediaPreload(showcase);
     });
+
+    scheduleOrderedProjectAssetsPreload();
   }
 
   function init() {
     initLanguage();
     syncProjectSections(config.projects || []);
-    initLazyProjectBackgrounds();
     initProjectShowcase();
     initScrollChrome();
 

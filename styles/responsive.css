@@ -228,8 +228,16 @@
     line-height: 1.34;
   }
 
+  .project-copy--codezero p {
+    margin-top: 12px;
+  }
+
   .project-points {
     margin-top: 22px;
+  }
+
+  .project-copy--codezero .project-points {
+    margin-top: 16px;
   }
 
   .project-points div {
@@ -255,6 +263,60 @@
 
   .codezero-frame::after {
     inset: 74px 28px 34px;
+  }
+
+  .codezero-stage {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+
+  .codezero-browser {
+    grid-template-rows: 36px minmax(0, 1fr) auto;
+    height: 322px;
+    min-height: 0;
+  }
+
+  .codezero-browser__top {
+    min-height: 36px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
+
+  .codezero-browser__top span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .codezero-media--video video,
+  .codezero-media--screen img {
+    padding: 8px;
+  }
+
+  .codezero-picker {
+    padding: 7px 8px 9px;
+  }
+
+  .codezero-picker__group {
+    gap: 6px;
+  }
+
+  .codezero-picker button {
+    min-height: 25px;
+    padding: 3px 6px 4px;
+    font-size: 9px;
+  }
+
+  .codezero-actions {
+    gap: 12px 18px;
+    margin-top: 14px;
+  }
+
+  .codezero-actions a,
+  .codezero-actions button {
+    min-height: 26px;
+    padding: 0 0 4px;
+    font-size: 13px;
   }
 
   .purrpilot-features {
@@ -717,6 +779,11 @@
 
   .codezero-frame {
     min-height: clamp(330px, 47vh, 540px);
+  }
+
+  .codezero-stage {
+    height: min(58dvh, 600px);
+    min-height: 380px;
   }
 
   .purrpilot-stage {
