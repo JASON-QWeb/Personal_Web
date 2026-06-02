@@ -1,6 +1,6 @@
 .pet-runner {
   --pet-x: 10px;
-  --pet-scale: .62;
+  --pet-scale: .52;
   --pet-ground: 10px;
   --pet-pink: #ff8fb3;
   --pet-shadow: #07050d;
@@ -95,13 +95,13 @@ html.is-pet-active .pet-runner {
 
 @media (max-width: 980px) {
   .pet-runner {
-    --pet-scale: .5;
+    --pet-scale: .43;
   }
 }
 
 @media (max-width: 640px) {
   .pet-runner {
-    --pet-scale: .42;
+    --pet-scale: .36;
     --pet-ground: 4px;
   }
 }

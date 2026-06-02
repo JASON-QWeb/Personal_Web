@@ -51,7 +51,7 @@
 .project-section--purrpilot.is-project-assets-ready {
   background:
     linear-gradient(90deg, rgba(255, 246, 214, .72) 0%, rgba(255, 246, 214, .34) 43%, rgba(255, 255, 255, .08) 100%),
-    url("../../assets/project-backgrounds/purrpilot-sky-meadow.jpg") center center / cover no-repeat;
+    url("../../assets/project-backgrounds/purrpilot-sky-meadow.webp") center center / cover no-repeat;
 }
 
 .project-section--purrpilot::before {
@@ -340,7 +340,8 @@
   animation: quickjumpPaneIn .28s var(--ease-out) both;
 }
 
-.purrpilot-media img {
+.purrpilot-media img,
+.purrpilot-media video {
   position: relative;
   z-index: 1;
   width: auto;
@@ -354,12 +355,14 @@
   transition: opacity .32s var(--ease-out);
 }
 
-.purrpilot-media--quick img {
+.purrpilot-media--quick img,
+.purrpilot-media--quick video {
   max-width: min(82%, 620px);
   max-height: min(86%, 446px);
 }
 
-.purrpilot-media.is-media-loaded img {
+.purrpilot-media.is-media-loaded img,
+.purrpilot-media.is-media-loaded video {
   opacity: 1;
 }
 
@@ -546,7 +549,8 @@
   animation: quickjumpPaneIn .28s var(--ease-out) both;
 }
 
-.quickjump-media img {
+.quickjump-media img,
+.quickjump-media video {
   position: relative;
   z-index: 1;
   width: auto;
@@ -559,7 +563,8 @@
   transition: opacity .32s var(--ease-out);
 }
 
-.quickjump-media--demo img {
+.quickjump-media--demo img,
+.quickjump-media--demo video {
   padding: clamp(8px, 1vw, 14px);
 }
 
@@ -567,7 +572,8 @@
   padding: clamp(10px, 1.5vw, 22px);
 }
 
-.quickjump-media.is-media-loaded img {
+.quickjump-media.is-media-loaded img,
+.quickjump-media.is-media-loaded video {
   opacity: 1;
 }
 

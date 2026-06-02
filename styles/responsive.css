@@ -57,9 +57,9 @@
 
 @media (max-width: 640px) {
   .home-section {
-    min-height: 100dvh;
-    align-items: stretch;
-    padding: 64px var(--pad) 42px;
+    min-height: 100svh;
+    align-items: flex-start;
+    padding: 72px var(--pad) 56px;
   }
 
   .head-nav {
@@ -76,7 +76,7 @@
 
   .profile-card {
     width: 100%;
-    min-height: calc(100dvh - 106px);
+    min-height: 0;
     max-height: none;
     justify-content: start;
     gap: 14px;
@@ -311,11 +311,13 @@
     height: 8px;
   }
 
-  .purrpilot-media img {
+  .purrpilot-media img,
+  .purrpilot-media video {
     padding: 8px;
   }
 
-  .purrpilot-media--quick img {
+  .purrpilot-media--quick img,
+  .purrpilot-media--quick video {
     max-width: min(92%, 620px);
     max-height: min(88%, 446px);
   }
@@ -509,6 +511,7 @@
   }
 
   .quickjump-media--demo img,
+  .quickjump-media--demo video,
   .quickjump-media--platforms img {
     padding: 8px;
   }
@@ -684,6 +687,63 @@
     to {
       transform: translate(-.38em, .14em) scale(2.35);
     }
+  }
+}
+
+@media (min-width: 981px) and (max-height: 900px) {
+  .home-section {
+    padding-top: clamp(70px, 8vh, 88px);
+    padding-bottom: clamp(52px, 6vh, 68px);
+  }
+
+  .profile-card {
+    --profile-card-scale: .94;
+  }
+
+  .project-section {
+    padding-top: clamp(68px, 8vh, 96px);
+    padding-bottom: clamp(54px, 7vh, 82px);
+  }
+
+  .project-section--quickjump,
+  .project-section--dataclean {
+    padding-top: clamp(64px, 7vh, 86px);
+    padding-bottom: clamp(48px, 6vh, 70px);
+  }
+
+  .project-visual {
+    min-height: clamp(360px, 54vh, 600px);
+  }
+
+  .codezero-frame {
+    min-height: clamp(330px, 47vh, 540px);
+  }
+
+  .purrpilot-stage {
+    height: min(58dvh, 580px);
+    min-height: 380px;
+  }
+
+  .quickjump-stage {
+    height: min(60dvh, 600px);
+    min-height: 380px;
+  }
+
+  .dataclean-stage {
+    height: min(56dvh, 540px);
+    min-height: 360px;
+  }
+}
+
+@media (min-width: 981px) and (max-height: 780px) {
+  .profile-card {
+    --profile-card-scale: .84;
+  }
+}
+
+@media (min-width: 981px) and (max-height: 700px) {
+  .profile-card {
+    --profile-card-scale: .78;
   }
 }
 

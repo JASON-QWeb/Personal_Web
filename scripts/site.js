@@ -1,3 +1,54 @@
+var mediaSources = {
+  "purrpilot-dashboard": {
+    webm: new URL("../assets/media/purrpilot/01-basic-dashboard.webm", import.meta.url).href,
+    mp4: new URL("../assets/media/purrpilot/01-basic-dashboard.mp4", import.meta.url).href
+  },
+  "purrpilot-cards": {
+    webm: new URL("../assets/media/purrpilot/02-session-media-weather.webm", import.meta.url).href,
+    mp4: new URL("../assets/media/purrpilot/02-session-media-weather.mp4", import.meta.url).href
+  },
+  "purrpilot-skills": {
+    webm: new URL("../assets/media/purrpilot/03-skill-exchange.webm", import.meta.url).href,
+    mp4: new URL("../assets/media/purrpilot/03-skill-exchange.mp4", import.meta.url).href
+  },
+  "purrpilot-custom": {
+    webm: new URL("../assets/media/purrpilot/04-pet-customization.webm", import.meta.url).href,
+    mp4: new URL("../assets/media/purrpilot/04-pet-customization.mp4", import.meta.url).href
+  },
+  "purrpilot-quick": {
+    webm: new URL("../assets/media/purrpilot/05-pet-quick-actions.webm", import.meta.url).href,
+    mp4: new URL("../assets/media/purrpilot/05-pet-quick-actions.mp4", import.meta.url).href
+  },
+  "quickjump-demo": {
+    webm: new URL("../assets/media/aichat/demo.webm", import.meta.url).href,
+    mp4: new URL("../assets/media/aichat/demo.mp4", import.meta.url).href
+  },
+  "quickjump-platforms": {
+    image: new URL("../assets/media/aichat/platforms.webp", import.meta.url).href
+  },
+  "dataclean-home": {
+    image: new URL("../assets/media/data-clean/1920_1200_home.webp", import.meta.url).href
+  },
+  "dataclean-processing": {
+    image: new URL("../assets/media/data-clean/1200_1200_processing.webp", import.meta.url).href
+  },
+  "dataclean-result": {
+    image: new URL("../assets/media/data-clean/2006_1148_result_ui.webp", import.meta.url).href
+  },
+  "dataclean-report": {
+    image: new URL("../assets/media/data-clean/1200_1200_report.webp", import.meta.url).href
+  },
+  "dataclean-minilm": {
+    image: new URL("../assets/media/data-clean/1300_1100_minilm_result.webp", import.meta.url).href
+  },
+  "dataclean-t5": {
+    image: new URL("../assets/media/data-clean/1300_1100_t5.webp", import.meta.url).href
+  },
+  "dataclean-architecture": {
+    image: new URL("../assets/media/data-clean/6300_4060_arch.webp", import.meta.url).href
+  }
+};
+
 (function (window, document) {
   "use strict";
 
@@ -179,10 +230,39 @@
     }
   }
 
-  function isImageLoaded(image) {
-    var source = image.getAttribute("data-demo-src");
+  function isVideoMedia(media) {
+    return media.tagName && media.tagName.toLowerCase() === "video";
+  }
 
-    return !!source && image.dataset.mediaLoaded === "true" && image.getAttribute("src") === source;
+  function canPlayWebm(video) {
+    return !!(video.canPlayType && video.canPlayType("video/webm; codecs=\"vp9\"")) || !!(video.canPlayType && video.canPlayType("video/webm"));
+  }
+
+  function getMediaSource(media) {
+    var mediaKey = media.getAttribute("data-demo-key");
+    var sourceConfig = mediaSources[mediaKey];
+    var source = media.getAttribute("data-demo-src");
+    var fallbackSource = media.getAttribute("data-demo-fallback-src");
+
+    if (sourceConfig) {
+      if (isVideoMedia(media)) {
+        return !canPlayWebm(media) && sourceConfig.mp4 ? sourceConfig.mp4 : sourceConfig.webm;
+      }
+
+      return sourceConfig.image || sourceConfig.src;
+    }
+
+    if (isVideoMedia(media) && fallbackSource && !canPlayWebm(media)) {
+      return fallbackSource;
+    }
+
+    return source;
+  }
+
+  function isMediaLoaded(media) {
+    var source = getMediaSource(media);
+
+    return !!source && media.dataset.mediaLoaded === "true" && media.getAttribute("src") === source;
   }
 
   function loadShowcaseMedia(panel) {
@@ -190,13 +270,13 @@
       return;
     }
 
-    var images = Array.prototype.slice.call(panel.querySelectorAll("[data-demo-src]"));
+    var mediaItems = Array.prototype.slice.call(panel.querySelectorAll("[data-demo-key], [data-demo-src]"));
 
-    if (!images.length) {
+    if (!mediaItems.length) {
       return;
     }
 
-    if (images.every(isImageLoaded)) {
+    if (mediaItems.every(isMediaLoaded)) {
       panel.classList.remove("is-media-loading", "is-media-error");
       panel.classList.add("is-media-loaded");
       return;
@@ -207,7 +287,7 @@
     var pending = 0;
     var hasError = false;
 
-    function completeImage(isError) {
+    function completeMedia(isError) {
       hasError = hasError || isError;
       pending -= 1;
 
@@ -220,35 +300,66 @@
       panel.classList.toggle("is-media-loaded", !hasError);
     }
 
-    images.forEach(function (image) {
-      var source = image.getAttribute("data-demo-src");
+    mediaItems.forEach(function (media) {
+      var source = getMediaSource(media);
 
-      if (!source || isImageLoaded(image)) {
+      if (!source || isMediaLoaded(media)) {
         return;
       }
 
       pending += 1;
-      image.dataset.mediaLoaded = "loading";
-      image.setAttribute("loading", "eager");
-      image.addEventListener("load", function () {
-        if (image.getAttribute("src") !== source) {
+      media.dataset.mediaLoaded = "loading";
+
+      if (isVideoMedia(media)) {
+        media.addEventListener("loadeddata", function () {
+          if (media.getAttribute("src") !== source) {
+            return;
+          }
+
+          media.dataset.mediaLoaded = "true";
+          completeMedia(false);
+        }, { once: true });
+
+        media.addEventListener("error", function () {
+          if (media.getAttribute("src") !== source) {
+            return;
+          }
+
+          media.dataset.mediaLoaded = "false";
+          completeMedia(true);
+        }, { once: true });
+
+        media.setAttribute("preload", "auto");
+        media.setAttribute("src", source);
+        media.load();
+
+        if (media.play) {
+          media.play().catch(function () {});
+        }
+
+        return;
+      }
+
+      media.setAttribute("loading", "eager");
+      media.addEventListener("load", function () {
+        if (media.getAttribute("src") !== source) {
           return;
         }
 
-        image.dataset.mediaLoaded = "true";
-        completeImage(false);
+        media.dataset.mediaLoaded = "true";
+        completeMedia(false);
       }, { once: true });
 
-      image.addEventListener("error", function () {
-        if (image.getAttribute("src") !== source) {
+      media.addEventListener("error", function () {
+        if (media.getAttribute("src") !== source) {
           return;
         }
 
-        image.dataset.mediaLoaded = "false";
-        completeImage(true);
+        media.dataset.mediaLoaded = "false";
+        completeMedia(true);
       }, { once: true });
 
-      image.setAttribute("src", source);
+      media.setAttribute("src", source);
     });
 
     if (!pending) {

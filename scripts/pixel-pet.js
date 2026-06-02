@@ -17,19 +17,20 @@
   var activeRunId = 0;
   var tapResumeTimer = 0;
   var spritePreload = null;
+  var introObserver = null;
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var hoverPointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
 
   function getScale() {
     if (window.innerWidth <= 640) {
-      return .42;
+      return .36;
     }
 
     if (window.innerWidth <= 980) {
-      return .5;
+      return .43;
     }
 
-    return .62;
+    return .52;
   }
 
   function getMaxX() {
@@ -52,6 +53,54 @@
     root.style.setProperty("--pet-scale", getScale());
     root.style.setProperty("--pet-ground", window.innerWidth <= 640 ? "4px" : "10px");
     setX(x);
+  }
+
+  function isIntroComplete() {
+    return document.documentElement.classList.contains("is-intro-complete");
+  }
+
+  function syncRestoredScrollPosition() {
+    if (!isIntroComplete()) {
+      return;
+    }
+
+    if (window.scrollY > 32) {
+      hasScrolledAfterLoad = true;
+    }
+
+    syncPetVisibilityFromScroll();
+  }
+
+  function scheduleRestoredScrollCheck() {
+    window.setTimeout(syncRestoredScrollPosition, 0);
+    window.setTimeout(syncRestoredScrollPosition, 180);
+  }
+
+  function watchIntroCompletion() {
+    if (isIntroComplete()) {
+      scheduleRestoredScrollCheck();
+      return;
+    }
+
+    if ("MutationObserver" in window) {
+      introObserver = new MutationObserver(function () {
+        if (!isIntroComplete()) {
+          return;
+        }
+
+        introObserver.disconnect();
+        introObserver = null;
+        scheduleRestoredScrollCheck();
+      });
+
+      introObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"]
+      });
+    }
+
+    window.setTimeout(syncRestoredScrollPosition, 7000);
+    window.setTimeout(syncRestoredScrollPosition, 9400);
   }
 
   function wait(duration) {
@@ -220,7 +269,11 @@
   }
 
   function handleScroll() {
-    if (!hasUserScrollIntent || !document.documentElement.classList.contains("is-intro-complete")) {
+    if (!isIntroComplete()) {
+      return;
+    }
+
+    if (!hasUserScrollIntent && window.scrollY <= 32) {
       return;
     }
 
@@ -299,7 +352,6 @@
     activeRunId += 1;
     loopStarted = false;
 
-    var scale = getScale();
     var petScreenX = x;
     dragOffsetX = event.clientX - petScreenX;
 
@@ -321,7 +373,7 @@
     isDragging = false;
     root.classList.remove("is-dragging");
 
-    if (root.hasPointerCapture && root.hasPointerCapture(event.pointerId)) {
+    if (event && typeof event.pointerId === "number" && root.hasPointerCapture && root.hasPointerCapture(event.pointerId)) {
       root.releasePointerCapture(event.pointerId);
     }
 
@@ -331,6 +383,10 @@
     startLoop(false, 800);
   }
 
+  function handlePointerCaptureLost() {
+    handleDragEnd();
+  }
+
   function initScrollVisibility() {
     document.documentElement.classList.remove("is-pet-active", "is-purrpilot-active");
     setPetActive(false);
@@ -338,6 +394,9 @@
     window.addEventListener("touchmove", markScrollIntent, { passive: true });
     window.addEventListener("keydown", markScrollIntent);
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("pageshow", scheduleRestoredScrollCheck);
+    window.addEventListener("load", scheduleRestoredScrollCheck, { once: true });
+    watchIntroCompletion();
   }
 
   function markSpriteReady() {
@@ -422,6 +481,7 @@
     root.addEventListener("pointermove", handleDragMove);
     root.addEventListener("pointerup", handleDragEnd);
     root.addEventListener("pointercancel", handleDragEnd);
+    root.addEventListener("lostpointercapture", handlePointerCaptureLost);
     root.addEventListener("pointerleave", function (event) {
       if (!isDragging) resumeAfterHover();
     });
@@ -456,6 +516,9 @@
   }
 
   window.addEventListener("resize", handleResize, { passive: true });
+  window.addEventListener("pointerup", handleDragEnd, { passive: true });
+  window.addEventListener("pointercancel", handleDragEnd, { passive: true });
+  window.addEventListener("blur", handleDragEnd);
 
   if (prefersReducedMotion.addEventListener) {
     prefersReducedMotion.addEventListener("change", handleMotionPreferenceChange);
