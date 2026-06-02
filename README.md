@@ -1,3 +1,3 @@
 # Personal Web
 
-![Personal Web](个人网站开场gif.gif)
+![Personal Web](个人网站开场.webp)

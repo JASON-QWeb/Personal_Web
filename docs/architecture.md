@@ -20,7 +20,7 @@
 | `scripts/site.js` | 页面启动入口，处理默认英文、导航语言切换，并同步项目 section 的数据属性。 |
 | `scripts/main.js` | Vite 模块入口，按顺序加载站点脚本，确保生产构建可以打包 JS。 |
 | `assets/home-bg-warm-studio.jpg` | 本地首屏背景图，避免运行时依赖远程图片。 |
-| `assets/logo-unsw.png` / `assets/logo-samsung.png` | 首页资料卡时间线使用的学校和公司 logo，均来自官方网站资源。 |
+| `assets/logo-unsw.webp` / `assets/logo-samsung.webp` | 首页资料卡时间线使用的学校和公司 logo，均来自官方网站资源。 |
 | `assets/logo-*.svg` | 首页技术栈使用的本地 logo 资产，例如 MCP、LangGraph、PyTorch、AI SDK、Go、Workflow、Skills、Vercel 和常见 devicon 标识。RAG、CI/CD 属于能力项而不是稳定独立品牌标识，页面使用文字 badge。 |
 | `docs/` | 中文说明文档。README 另外保留中英文两份。 |
 
