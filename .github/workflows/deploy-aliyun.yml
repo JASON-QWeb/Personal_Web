@@ -1,0 +1,83 @@
+name: Deploy to Aliyun
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-aliyun
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Configure SSH
+        env:
+          ALIYUN_HOST: ${{ secrets.ALIYUN_HOST }}
+          ALIYUN_PORT: ${{ secrets.ALIYUN_PORT }}
+          ALIYUN_SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}
+          ALIYUN_KNOWN_HOSTS: ${{ secrets.ALIYUN_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          test -n "$ALIYUN_HOST"
+          test -n "$ALIYUN_SSH_PRIVATE_KEY"
+
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$ALIYUN_SSH_PRIVATE_KEY" > ~/.ssh/aliyun_deploy_key
+          chmod 600 ~/.ssh/aliyun_deploy_key
+
+          SSH_PORT="${ALIYUN_PORT:-22}"
+          if [ -n "${ALIYUN_KNOWN_HOSTS:-}" ]; then
+            printf '%s\n' "$ALIYUN_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          else
+            ssh-keyscan -p "$SSH_PORT" "$ALIYUN_HOST" >> ~/.ssh/known_hosts
+          fi
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Deploy dist to Aliyun
+        env:
+          ALIYUN_HOST: ${{ secrets.ALIYUN_HOST }}
+          ALIYUN_PORT: ${{ secrets.ALIYUN_PORT }}
+          ALIYUN_USER: ${{ secrets.ALIYUN_USER }}
+          ALIYUN_DEPLOY_PATH: ${{ secrets.ALIYUN_DEPLOY_PATH }}
+        run: |
+          set -euo pipefail
+          SSH_PORT="${ALIYUN_PORT:-22}"
+          SSH_USER="${ALIYUN_USER:-root}"
+          DEPLOY_PATH="${ALIYUN_DEPLOY_PATH:-/var/www/playai.click}"
+          SSH_TARGET="$SSH_USER@$ALIYUN_HOST"
+          SSH_OPTS="-i ~/.ssh/aliyun_deploy_key -p $SSH_PORT -o StrictHostKeyChecking=yes"
+
+          ssh $SSH_OPTS "$SSH_TARGET" "mkdir -p '$DEPLOY_PATH'"
+          ssh $SSH_OPTS "$SSH_TARGET" "find '$DEPLOY_PATH' -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +"
+          tar -C dist -czf - . | ssh $SSH_OPTS "$SSH_TARGET" "tar --no-same-owner -xzf - -C '$DEPLOY_PATH' && find '$DEPLOY_PATH' -name '._*' -delete"
+
+      - name: Verify deployment
+        env:
+          DEPLOY_URL: ${{ secrets.DEPLOY_URL }}
+        run: |
+          set -euo pipefail
+          if [ -n "${DEPLOY_URL:-}" ]; then
+            curl --fail --location --max-time 20 "$DEPLOY_URL" >/dev/null
+          fi

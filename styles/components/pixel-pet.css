@@ -2,14 +2,17 @@
   --pet-x: 10px;
   --pet-scale: .52;
   --pet-ground: 10px;
+  --pet-hit-pad: 8px;
+  --pet-hit-width: 116px;
+  --pet-hit-height: 124px;
   --pet-pink: #ff8fb3;
   --pet-shadow: #07050d;
   position: fixed;
   z-index: 42;
   left: 0;
   bottom: var(--pet-ground);
-  width: 192px;
-  height: 208px;
+  width: var(--pet-hit-width);
+  height: var(--pet-hit-height);
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
@@ -35,8 +38,12 @@ html.is-pet-active .pet-runner {
 }
 
 .pet-runner__sprite {
+  position: absolute;
+  left: 50%;
+  bottom: var(--pet-hit-pad);
   width: 192px;
   height: 208px;
+  margin-left: -96px;
   background-image: none;
   background-repeat: no-repeat;
   background-size: 1536px 1872px;
@@ -47,6 +54,7 @@ html.is-pet-active .pet-runner {
     drop-shadow(5px 6px 0 rgba(7, 5, 13, .54));
   transform: scale(var(--pet-scale));
   transform-origin: bottom center;
+  pointer-events: none;
   animation: pixelPetIdle .86s steps(6) infinite;
 }
 

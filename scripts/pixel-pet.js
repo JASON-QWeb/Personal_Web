@@ -4,6 +4,7 @@
   var CELL_WIDTH = 192;
   var CELL_HEIGHT = 208;
   var MIN_X = 8;
+  var HIT_PADDING = 8;
   var root = null;
   var x = MIN_X;
   var loopStarted = false;
@@ -34,7 +35,15 @@
   }
 
   function getMaxX() {
-    return Math.max(MIN_X, window.innerWidth - (CELL_WIDTH * getScale()) - MIN_X);
+    return Math.max(MIN_X, window.innerWidth - getHitWidth() - MIN_X);
+  }
+
+  function getHitWidth() {
+    return (CELL_WIDTH * getScale()) + (HIT_PADDING * 2);
+  }
+
+  function getHitHeight() {
+    return (CELL_HEIGHT * getScale()) + (HIT_PADDING * 2);
   }
 
   function setX(nextX) {
@@ -52,6 +61,9 @@
 
     root.style.setProperty("--pet-scale", getScale());
     root.style.setProperty("--pet-ground", window.innerWidth <= 640 ? "4px" : "10px");
+    root.style.setProperty("--pet-hit-pad", HIT_PADDING + "px");
+    root.style.setProperty("--pet-hit-width", getHitWidth().toFixed(1) + "px");
+    root.style.setProperty("--pet-hit-height", getHitHeight().toFixed(1) + "px");
     setX(x);
   }
 
