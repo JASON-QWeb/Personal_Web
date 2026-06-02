@@ -51,7 +51,6 @@ video {
 }
 
 @media (min-width: 981px) and (prefers-reduced-motion: no-preference) {
-  html.is-intro-complete .home-section,
   html.is-intro-complete .project-section {
     height: 100dvh;
     min-height: 0;

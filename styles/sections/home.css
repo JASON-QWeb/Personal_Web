@@ -29,6 +29,13 @@
   animation: heroSettle 3.2s var(--ease-out) var(--intro-open-start) both;
 }
 
+@media (min-width: 981px) {
+  .home-section {
+    height: 100dvh;
+    min-height: 0;
+  }
+}
+
 @keyframes heroSettle {
   to {
     transform: scale(1);
