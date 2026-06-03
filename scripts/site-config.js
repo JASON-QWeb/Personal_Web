@@ -7,7 +7,7 @@
       languages: ["en", "zh-CN"],
       translations: {
         en: {
-          "meta.title": "JasonQ | Product-minded AI Builder",
+          "meta.title": "JasonQ | 个人网站",
           "meta.description": "JasonQ builds AI-powered products and enterprise-ready systems across product, design, full-stack engineering, and AI architecture.",
           "site.aria": "JasonQ personal website",
           "home.aria": "About JasonQ",
@@ -220,7 +220,7 @@
           "project.dataclean.github": "Github"
         },
         "zh-CN": {
-          "meta.title": "JasonQ | 产品型 AI 构建者",
+          "meta.title": "JasonQ | 个人网站",
           "meta.description": "JasonQ 从产品、设计、全栈工程与 AI 架构出发，构建 AI 产品和可在企业场景落地的数字系统。",
           "site.aria": "JasonQ 个人主页",
           "home.aria": "关于 JasonQ",

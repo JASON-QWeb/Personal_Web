@@ -659,6 +659,7 @@
 
   .logo-list li {
     width: 34px;
+    min-width: 0;
     min-height: 34px;
     flex: 0 0 34px;
     gap: 0;

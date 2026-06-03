@@ -256,6 +256,14 @@
   min-height: 42px;
 }
 
+.logo-list--ai .logo-item--agents-sdk {
+  min-width: 66px;
+}
+
+.logo-list--ai .logo-item--agents-sdk .logo-label {
+  white-space: nowrap;
+}
+
 .logo-list li {
   min-height: 60px;
   display: flex;

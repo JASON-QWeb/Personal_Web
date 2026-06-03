@@ -21,7 +21,7 @@
 | `scripts/main.js` | Vite 模块入口，按顺序加载站点脚本，确保生产构建可以打包 JS。 |
 | `assets/home-bg-warm-studio.jpg` | 本地首屏背景图，避免运行时依赖远程图片。 |
 | `assets/logo-unsw.webp` / `assets/logo-samsung.webp` | 首页资料卡时间线使用的学校和公司 logo，均来自官方网站资源。 |
-| `assets/logo-*.svg` | 首页技术栈使用的本地 logo 资产，例如 MCP、LangGraph、PyTorch、AI SDK、Go、Workflow、Skills、Vercel 和常见 devicon 标识。RAG、CI/CD 属于能力项而不是稳定独立品牌标识，页面使用文字 badge。 |
+| `assets/logo-*.svg` / `assets/logo-chatgpt.webp` | 首页技术栈使用的本地 logo 资产，例如 ChatGPT/Agents SDK、MCP、LangGraph、PyTorch、AI SDK、Go、Workflow、Skills、Vercel 和常见 devicon 标识。CI/CD 属于能力项而不是稳定独立品牌标识，页面使用文字 badge。 |
 | `docs/` | 中文说明文档。README 另外保留中英文两份。 |
 
 ## 页面板块规范

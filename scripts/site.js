@@ -262,6 +262,40 @@ var projectBackgroundSources = {
     return media.tagName && media.tagName.toLowerCase() === "video";
   }
 
+  function playVideoMedia(media) {
+    if (media.play) {
+      media.play().catch(function () {});
+    }
+  }
+
+  function pausePanelVideoMedia(panel) {
+    if (!panel) {
+      return;
+    }
+
+    Array.prototype.slice.call(panel.querySelectorAll("video")).forEach(function (media) {
+      media.pause();
+    });
+  }
+
+  function replayPanelVideoMedia(panel) {
+    if (!panel) {
+      return;
+    }
+
+    Array.prototype.slice.call(panel.querySelectorAll("video")).forEach(function (media) {
+      if (!media.getAttribute("src")) {
+        return;
+      }
+
+      try {
+        media.currentTime = 0;
+      } catch (error) {}
+
+      playVideoMedia(media);
+    });
+  }
+
   function canPlayWebm(video) {
     return !!(video.canPlayType && video.canPlayType("video/webm; codecs=\"vp9\"")) || !!(video.canPlayType && video.canPlayType("video/webm"));
   }
@@ -329,8 +363,8 @@ var projectBackgroundSources = {
         media.setAttribute("src", source);
         media.load();
 
-        if (media.play) {
-          media.play().catch(function () {});
+        if (media.closest("[data-showcase-panel].is-active")) {
+          playVideoMedia(media);
         }
 
         return;
@@ -608,6 +642,8 @@ var projectBackgroundSources = {
 
           if (isActive) {
             activePanel = panel;
+          } else {
+            pausePanelVideoMedia(panel);
           }
         });
 
@@ -615,7 +651,11 @@ var projectBackgroundSources = {
         syncShowcaseMode(showcase, activePanel);
 
         if (shouldLoadMedia) {
-          loadShowcaseMedia(activePanel);
+          loadShowcaseMedia(activePanel).then(function () {
+            if (activePanel && activePanel.classList.contains("is-active")) {
+              replayPanelVideoMedia(activePanel);
+            }
+          });
         }
       }
 
