@@ -7,7 +7,7 @@
       languages: ["en", "zh-CN"],
       translations: {
         en: {
-          "meta.title": "JasonQ | 个人网站",
+          "meta.title": "JasonQ | Personal Website",
           "meta.description": "JasonQ builds AI-powered products and enterprise-ready systems across product, design, full-stack engineering, and AI architecture.",
           "site.aria": "JasonQ personal website",
           "home.aria": "About JasonQ",
