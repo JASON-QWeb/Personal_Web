@@ -8,19 +8,19 @@ var mediaSources = {
     mp4: new URL("../assets/media/codezero/plan-to-pr.mp4", import.meta.url).href
   },
   "codezero-codegraph": {
-    image: new URL("../assets/media/codezero/codegraph.png", import.meta.url).href
+    image: new URL("../assets/media/codezero/codegraph.webp", import.meta.url).href
   },
   "codezero-knowledge": {
-    image: new URL("../assets/media/codezero/knowledge-graph.png", import.meta.url).href
+    image: new URL("../assets/media/codezero/knowledge-graph.webp", import.meta.url).href
   },
   "codezero-config": {
-    image: new URL("../assets/media/codezero/business-config.png", import.meta.url).href
+    image: new URL("../assets/media/codezero/business-config.webp", import.meta.url).href
   },
   "codezero-repo-board": {
-    image: new URL("../assets/media/codezero/repo-board.png", import.meta.url).href
+    image: new URL("../assets/media/codezero/repo-board.webp", import.meta.url).href
   },
   "codezero-home-board": {
-    image: new URL("../assets/media/codezero/home-board.png", import.meta.url).href
+    image: new URL("../assets/media/codezero/home-board.webp", import.meta.url).href
   },
   "purrpilot-dashboard": {
     webm: new URL("../assets/media/purrpilot/01-basic-dashboard.webm", import.meta.url).href,
@@ -72,10 +72,15 @@ var mediaSources = {
   }
 };
 
+var projectBackgroundSources = {
+  purrpilot: new URL("../assets/project-backgrounds/purrpilot-sky-meadow.webp", import.meta.url).href
+};
+
 (function (window, document) {
   "use strict";
 
   var config = window.JasonQSiteConfig || {};
+  var projectBackgroundPromises = {};
 
   function isSupportedLanguage(language, languages) {
     return languages.indexOf(language) !== -1;
@@ -392,6 +397,64 @@ var mediaSources = {
     });
   }
 
+  function preloadImageSource(source) {
+    if (!source) {
+      return Promise.resolve(false);
+    }
+
+    if (projectBackgroundPromises[source]) {
+      return projectBackgroundPromises[source];
+    }
+
+    projectBackgroundPromises[source] = new Promise(function (resolve) {
+      var image = new Image();
+
+      image.decoding = "async";
+      image.addEventListener("load", function () {
+        resolve(false);
+      }, { once: true });
+      image.addEventListener("error", function () {
+        resolve(true);
+      }, { once: true });
+      image.src = source;
+    });
+
+    return projectBackgroundPromises[source];
+  }
+
+  function getProjectBackgroundSource(section) {
+    var projectId = section && section.getAttribute("data-project");
+
+    return projectBackgroundSources[projectId];
+  }
+
+  function loadProjectBackground(section) {
+    if (!section || !section.hasAttribute("data-lazy-project-bg")) {
+      return Promise.resolve(false);
+    }
+
+    var source = getProjectBackgroundSource(section);
+
+    if (!source) {
+      section.classList.add("is-project-assets-ready");
+      return Promise.resolve(false);
+    }
+
+    if (section.dataset.projectBackgroundLoaded === "true") {
+      section.classList.add("is-project-assets-ready");
+      return Promise.resolve(false);
+    }
+
+    return preloadImageSource(source).then(function (isError) {
+      if (!isError) {
+        section.dataset.projectBackgroundLoaded = "true";
+        section.classList.add("is-project-assets-ready");
+      }
+
+      return isError;
+    });
+  }
+
   function scheduleAfterIntroStart(callback, timeoutMs) {
     var intro = config.intro || {};
     var loadedClass = intro.loadedClass || "is-loaded";
@@ -474,19 +537,31 @@ var mediaSources = {
 
   function scheduleOrderedProjectAssetsPreload() {
     scheduleDuringIntro(function () {
-      var preloadChain = Promise.resolve();
       var projectSections = Array.prototype.slice.call(document.querySelectorAll('[data-section="project"]')).sort(function (left, right) {
         return getProjectIndex(left) - getProjectIndex(right);
+      });
+      var preloadChain = Promise.resolve();
+
+      projectSections.forEach(function (section) {
+        preloadChain = preloadChain.then(function () {
+          return loadProjectBackground(section);
+        });
       });
 
       projectSections.forEach(function (section) {
         var showcase = section.querySelector("[data-project-showcase]");
 
+        if (!showcase) {
+          return;
+        }
+
         preloadChain = preloadChain.then(function () {
-          if (section.hasAttribute("data-lazy-project-bg")) {
-            section.classList.add("is-project-assets-ready");
-          }
+          return loadShowcaseMedia(showcase.querySelector("[data-showcase-panel].is-active") || showcase.querySelector("[data-showcase-panel]"));
         });
+      });
+
+      projectSections.forEach(function (section) {
+        var showcase = section.querySelector("[data-project-showcase]");
 
         if (!showcase) {
           return;
@@ -494,6 +569,10 @@ var mediaSources = {
 
         Array.prototype.slice.call(showcase.querySelectorAll("[data-showcase-panel]")).forEach(function (panel) {
           preloadChain = preloadChain.then(function () {
+            if (panel.classList.contains("is-active")) {
+              return false;
+            }
+
             return loadShowcaseMedia(panel);
           });
         });
