@@ -1,0 +1,37 @@
+.site-filing {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: clamp(14px, 2.2vh, 24px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 16px;
+  width: min(calc(100% - 28px), 760px);
+  transform: translateX(-50%);
+  color: rgba(19, 34, 43, .56);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.site-filing a {
+  color: inherit;
+  transition: color .18s var(--ease-out);
+}
+
+.site-filing a:hover {
+  color: rgba(79, 70, 229, .86);
+}
+
+.site-filing__police {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.site-filing__police img {
+  flex: 0 0 auto;
+}

@@ -3,6 +3,7 @@
 @import url("./styles/sections/home.css");
 @import url("./styles/components/site-header.css");
 @import url("./styles/components/profile-card.css");
+@import url("./styles/components/site-footer.css");
 @import url("./styles/sections/projects.css");
 @import url("./styles/components/project-demo.css");
 @import url("./styles/components/opening-loader.css");
