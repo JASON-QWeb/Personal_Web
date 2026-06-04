@@ -611,6 +611,10 @@ var projectBackgroundSources = {
           });
         });
       });
+
+      preloadChain.then(function () {
+        window.dispatchEvent(new CustomEvent("jasonq:project-assets-preloaded"));
+      });
     }, 2400);
   }
 

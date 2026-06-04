@@ -457,17 +457,21 @@
   }
 
   function scheduleSpritePreload() {
-    var load = function () {
-      preloadSprite();
-    };
+    var fallbackTimer = 0;
+    var didSchedule = false;
 
-    window.setTimeout(function () {
-      if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(load, { timeout: 2200 });
-      } else {
-        window.setTimeout(load, 320);
+    function load() {
+      if (didSchedule) {
+        return;
       }
-    }, 2200);
+
+      didSchedule = true;
+      window.clearTimeout(fallbackTimer);
+      preloadSprite();
+    }
+
+    window.addEventListener("jasonq:project-assets-preloaded", load, { once: true });
+    fallbackTimer = window.setTimeout(load, 9400);
   }
 
   function createPet() {
