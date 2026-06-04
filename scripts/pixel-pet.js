@@ -470,8 +470,8 @@
       preloadSprite();
     }
 
-    window.addEventListener("jasonq:project-assets-preloaded", load, { once: true });
-    fallbackTimer = window.setTimeout(load, 9400);
+    window.addEventListener("jasonq:intro-start", load, { once: true });
+    fallbackTimer = window.setTimeout(load, 2400);
   }
 
   function createPet() {
