@@ -16,13 +16,8 @@
   text-align: center;
 }
 
-.site-filing a {
+.site-filing__item {
   color: inherit;
-  transition: color .18s var(--ease-out);
-}
-
-.site-filing a:hover {
-  color: rgba(79, 70, 229, .86);
 }
 
 .site-filing__police {
