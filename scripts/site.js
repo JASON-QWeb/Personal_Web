@@ -2,20 +2,22 @@ var mediaSources = {
   "devlite-cover": {
     localized: {
       en: {
-        image: new URL("../assets/media/devlite/cover-en.png", import.meta.url).href
+        image: new URL("../assets/media/devlite/cover-en.webp", import.meta.url).href
       },
       "zh-CN": {
-        image: new URL("../assets/media/devlite/cover-zh.png", import.meta.url).href
+        image: new URL("../assets/media/devlite/cover-zh.webp", import.meta.url).href
       }
     }
   },
   "devlite-demo": {
     localized: {
       en: {
-        image: new URL("../assets/media/devlite/demo-en.gif", import.meta.url).href
+        webm: new URL("../assets/media/devlite/demo-en.webm", import.meta.url).href,
+        mp4: new URL("../assets/media/devlite/demo-en.mp4", import.meta.url).href
       },
       "zh-CN": {
-        image: new URL("../assets/media/devlite/demo-zh.gif", import.meta.url).href
+        webm: new URL("../assets/media/devlite/demo-zh.webm", import.meta.url).href,
+        mp4: new URL("../assets/media/devlite/demo-zh.mp4", import.meta.url).href
       }
     }
   },
