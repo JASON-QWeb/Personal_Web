@@ -31,6 +31,7 @@
     order: -1;
   }
 
+  .project-section--devlite,
   .project-section--codezero,
   .project-section--purrpilot,
   .project-section--quickjump,
@@ -38,12 +39,14 @@
     min-height: auto;
   }
 
+  .devlite-copy,
   .quickjump-copy,
   .dataclean-copy {
     order: -1;
     max-width: none;
   }
 
+  .devlite-copy h2,
   .quickjump-copy h2,
   .dataclean-copy h2 {
     max-width: 10em;
@@ -210,6 +213,7 @@
     font-size: 10px;
   }
 
+  .project-section--devlite,
   .project-section--codezero,
   .project-section--purrpilot {
     gap: 30px;
@@ -314,6 +318,80 @@
 
   .codezero-actions a,
   .codezero-actions button {
+    min-height: 26px;
+    padding: 0 0 4px;
+    font-size: 13px;
+  }
+
+  .devlite-copy h2 {
+    margin-top: 14px;
+    font-size: clamp(48px, 16vw, 68px);
+    line-height: .9;
+  }
+
+  .devlite-copy > p {
+    margin-top: 18px;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .devlite-features {
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .devlite-features div {
+    min-height: 64px;
+    padding: 0 0 10px 56px;
+  }
+
+  .devlite-features div::before {
+    width: 42px;
+    font-size: 9px;
+  }
+
+  .devlite-features div::after {
+    left: 46px;
+    bottom: 12px;
+  }
+
+  .devlite-features strong {
+    font-size: 14px;
+  }
+
+  .devlite-features span {
+    font-size: 13px;
+  }
+
+  .devlite-stage {
+    height: auto;
+    min-height: 0;
+  }
+
+  .devlite-browser {
+    grid-template-rows: 36px minmax(0, 1fr);
+    height: auto;
+    min-height: 0;
+  }
+
+  .devlite-browser__top {
+    min-height: 36px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
+
+  .devlite-browser__top span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .devlite-actions {
+    gap: 12px 18px;
+    margin-top: 24px;
+  }
+
+  .devlite-actions a,
+  .devlite-actions button {
     min-height: 26px;
     padding: 0 0 4px;
     font-size: 13px;

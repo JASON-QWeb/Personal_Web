@@ -1,4 +1,24 @@
 var mediaSources = {
+  "devlite-cover": {
+    localized: {
+      en: {
+        image: new URL("../assets/media/devlite/cover-en.png", import.meta.url).href
+      },
+      "zh-CN": {
+        image: new URL("../assets/media/devlite/cover-zh.png", import.meta.url).href
+      }
+    }
+  },
+  "devlite-demo": {
+    localized: {
+      en: {
+        image: new URL("../assets/media/devlite/demo-en.gif", import.meta.url).href
+      },
+      "zh-CN": {
+        image: new URL("../assets/media/devlite/demo-zh.gif", import.meta.url).href
+      }
+    }
+  },
   "codezero-issue": {
     webm: new URL("../assets/media/codezero/issue-to-plan.webm", import.meta.url).href,
     mp4: new URL("../assets/media/codezero/issue-to-plan.mp4", import.meta.url).href
@@ -121,7 +141,7 @@ var projectBackgroundSources = {
     });
   }
 
-  function applyLanguage(language) {
+  function applyLanguage(language, shouldRefreshMedia) {
     var i18n = config.i18n;
 
     if (!i18n) {
@@ -151,6 +171,10 @@ var projectBackgroundSources = {
     });
 
     syncShowcaseWindowTitles();
+
+    if (shouldRefreshMedia) {
+      refreshLocalizedShowcaseMedia();
+    }
   }
 
   function initLanguage() {
@@ -165,7 +189,7 @@ var projectBackgroundSources = {
     var initialLanguage = normalizeLanguage(defaultLanguage, languages, defaultLanguage);
     var languageToggle = document.querySelector("[data-lang-toggle]");
 
-    applyLanguage(initialLanguage);
+    applyLanguage(initialLanguage, false);
 
     if (!languageToggle) {
       return;
@@ -175,11 +199,14 @@ var projectBackgroundSources = {
       var currentLanguage = document.documentElement.dataset.language || initialLanguage;
       var nextLanguage = currentLanguage === "zh-CN" ? "en" : "zh-CN";
 
-      applyLanguage(nextLanguage);
+      applyLanguage(nextLanguage, true);
     });
   }
 
   function syncProjectSections(projects) {
+    var root = document.querySelector(".site") || document.querySelector("main");
+    var orderedSections = [];
+
     projects.forEach(function (project) {
       var section = document.querySelector('[data-project="' + project.id + '"]');
 
@@ -189,7 +216,14 @@ var projectBackgroundSources = {
 
       section.dataset.projectOrder = project.order;
       section.dataset.projectTitle = project.title;
+      orderedSections.push(section);
     });
+
+    if (root && orderedSections.length) {
+      orderedSections.forEach(function (section) {
+        root.appendChild(section);
+      });
+    }
   }
 
   function initScrollChrome() {
@@ -199,6 +233,7 @@ var projectBackgroundSources = {
     var projectSections = Array.prototype.slice.call(document.querySelectorAll('[data-section="project"]'));
     var finalSection = projectSections[projectSections.length - 1];
     var lightProjectIds = {
+      devlite: true,
       codezero: true,
       purrpilot: true,
       "table-data-clean": true
@@ -300,9 +335,25 @@ var projectBackgroundSources = {
     return !!(video.canPlayType && video.canPlayType("video/webm; codecs=\"vp9\"")) || !!(video.canPlayType && video.canPlayType("video/webm"));
   }
 
+  function getCurrentLanguage() {
+    return document.documentElement.dataset.language || (config.i18n && config.i18n.defaultLanguage) || "en";
+  }
+
+  function getLocalizedSourceConfig(sourceConfig) {
+    var localized = sourceConfig && sourceConfig.localized;
+
+    if (!localized) {
+      return sourceConfig;
+    }
+
+    var language = getCurrentLanguage();
+
+    return localized[language] || localized[language.split("-")[0]] || localized.en || localized["zh-CN"] || sourceConfig;
+  }
+
   function getMediaSource(media) {
     var mediaKey = media.getAttribute("data-demo-key");
-    var sourceConfig = mediaSources[mediaKey];
+    var sourceConfig = getLocalizedSourceConfig(mediaSources[mediaKey]);
     var source = media.getAttribute("data-demo-src");
     var fallbackSource = media.getAttribute("data-demo-fallback-src");
 
@@ -319,6 +370,16 @@ var projectBackgroundSources = {
     }
 
     return source;
+  }
+
+  function refreshLocalizedShowcaseMedia() {
+    document.querySelectorAll("[data-project-showcase]").forEach(function (showcase) {
+      var activePanel = showcase.querySelector("[data-showcase-panel].is-active");
+
+      if (activePanel) {
+        loadShowcaseMedia(activePanel);
+      }
+    });
   }
 
   function isMediaLoaded(media) {

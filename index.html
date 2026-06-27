@@ -157,11 +157,94 @@
       </section>
 
       <section
-        class="project-section project-section--codezero"
+        class="project-section project-section--devlite"
         id="projects"
         data-section="project"
+        data-project="devlite"
+        aria-label="Project 01: DevLite"
+        data-i18n-attr="aria-label:project.devlite.aria"
+      >
+        <div class="devlite-showcase" data-project-showcase aria-label="DevLite demo player" data-i18n-attr="aria-label:project.devlite.visualAria">
+          <div class="devlite-stage" aria-live="polite">
+            <div class="devlite-browser">
+              <div class="devlite-browser__top">
+                <span></span><span></span><span></span>
+                <p data-showcase-window-title data-i18n="project.devlite.coverWindow">devlite / cover</p>
+              </div>
+
+              <figure
+                class="devlite-media devlite-media--cover is-active"
+                id="devlite-panel-cover"
+                data-showcase-panel="cover"
+                data-showcase-title-key="project.devlite.coverWindow"
+              >
+                <div class="devlite-media__loader" data-i18n="project.devlite.mediaLoading">Loading DevLite...</div>
+                <img
+                  src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="
+                  data-demo-key="devlite-cover"
+                  alt="DevLite cover"
+                  data-i18n-attr="alt:project.devlite.coverAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+
+              <figure
+                class="devlite-media devlite-media--demo"
+                id="devlite-panel-demo"
+                data-showcase-panel="demo"
+                data-showcase-title-key="project.devlite.demoWindow"
+                hidden
+                aria-hidden="true"
+              >
+                <div class="devlite-media__loader" data-i18n="project.devlite.mediaLoading">Loading DevLite...</div>
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                  data-demo-key="devlite-demo"
+                  alt="DevLite English demo"
+                  data-i18n-attr="alt:project.devlite.demoAlt"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <article class="devlite-copy">
+          <span class="project-kicker" data-i18n="project.devlite.badge">01 / Browser Devtool Extension</span>
+          <h2 class="devlite-title" data-i18n="project.devlite.title">DevLite</h2>
+          <p data-i18n="project.devlite.copy">A lightweight inspection-mode browser extension for live page edits, diagnostics, and repair prompt export.</p>
+
+          <div class="devlite-features" aria-label="DevLite focus" data-i18n-attr="aria-label:project.devlite.featuresAria">
+            <div data-feature-code="EDIT">
+              <strong data-i18n="project.devlite.featureEdit">Live editing</strong>
+              <span data-i18n="project.devlite.featureEditCopy">Select text, images, or styles on the page and preview changes in place.</span>
+            </div>
+            <div data-feature-code="DIAG">
+              <strong data-i18n="project.devlite.featureDiag">Diagnostics</strong>
+              <span data-i18n="project.devlite.featureDiagCopy">Collect console errors, network signals, Promise exceptions, and performance clues in one panel.</span>
+            </div>
+            <div data-feature-code="AGENT">
+              <strong data-i18n="project.devlite.featureAgent">Agent handoff</strong>
+              <span data-i18n="project.devlite.featureAgentCopy">Export structured repair prompts with page context and edit history.</span>
+            </div>
+          </div>
+
+          <div class="devlite-actions">
+            <button class="is-active" type="button" data-showcase-tab="cover" data-i18n="project.devlite.coverLink">Cover</button>
+            <button type="button" data-showcase-tab="demo" data-i18n="project.devlite.demoLink">Demo</button>
+            <a href="https://chromewebstore.google.com/detail/devlite/pppajolpipomdlekjlmboemhoadlkgfm" target="_blank" rel="noopener noreferrer" data-i18n="project.devlite.download">Download</a>
+            <a href="https://github.com/JASON-QWeb/DevLite" target="_blank" rel="noopener noreferrer" data-i18n="project.devlite.github">Github</a>
+          </div>
+        </article>
+      </section>
+
+      <section
+        class="project-section project-section--codezero"
+        data-section="project"
         data-project="codezero"
-        aria-label="Project 01: CodeZero"
+        aria-label="Project 04: CodeZero"
         data-i18n-attr="aria-label:project.codezero.aria"
       >
         <div class="project-visual project-visual--codezero codezero-showcase" data-project-showcase aria-label="CodeZero product demos" data-i18n-attr="aria-label:project.codezero.visualAria">
@@ -169,7 +252,7 @@
             <div class="codezero-browser">
               <div class="codezero-browser__top">
                 <span></span><span></span><span></span>
-                <p data-showcase-window-title data-i18n="project.codezero.issueWindow">codezero / Issue to Plan</p>
+                <p data-showcase-window-title data-i18n="project.codezero.issueWindow">codezero / Issue to PRD</p>
               </div>
 
               <figure
@@ -183,7 +266,7 @@
                 <video
                   data-demo-key="codezero-issue"
                   data-demo-kind="webm"
-                  aria-label="CodeZero Issue to Plan demo"
+                  aria-label="Issue to PRD demo"
                   data-i18n-attr="aria-label:project.codezero.issueAlt"
                   muted
                   loop
@@ -205,7 +288,7 @@
                 <video
                   data-demo-key="codezero-pr"
                   data-demo-kind="webm"
-                  aria-label="CodeZero Plan to PR demo"
+                  aria-label="Plan to PR demo"
                   data-i18n-attr="aria-label:project.codezero.prAlt"
                   muted
                   loop
@@ -316,7 +399,7 @@
 
               <div class="codezero-picker">
                 <div class="codezero-picker__group" data-showcase-mode-panel="demo" aria-label="CodeZero demo selector" data-i18n-attr="aria-label:project.codezero.demoSelectorAria">
-                  <button class="is-active" type="button" data-showcase-tab="issue-to-plan" data-i18n="project.codezero.issueLink">Issue to Plan</button>
+                  <button class="is-active" type="button" data-showcase-tab="issue-to-plan" data-i18n="project.codezero.issueLink">Issue to PRD</button>
                   <button type="button" data-showcase-tab="plan-to-pr" data-i18n="project.codezero.prLink">Plan to PR</button>
                 </div>
                 <div class="codezero-picker__group" data-showcase-mode-panel="features" aria-label="CodeZero core feature selector" data-i18n-attr="aria-label:project.codezero.featureSelectorAria" hidden aria-hidden="true">
@@ -332,22 +415,22 @@
         </div>
 
         <article class="project-copy project-copy--codezero">
-          <span class="project-kicker" data-i18n="project.codezero.badge">01 / Enterprise Product</span>
+          <span class="project-kicker" data-i18n="project.codezero.badge">04 / Agentic Engineering Workflow</span>
           <h2 class="project-title project-title--codezero" data-i18n="project.codezero.title">CodeZero</h2>
-          <p data-i18n="project.codezero.copy">Automation Issue -> PRD -> PR.</p>
+          <p data-i18n="project.codezero.copy">Turn GitHub issues into PRDs, implementation plans, and draft PRs.</p>
 
           <div class="project-points" aria-label="CodeZero focus" data-i18n-attr="aria-label:project.codezero.pointsAria">
             <div>
-              <strong data-i18n="project.codezero.pointOne">Plan</strong>
-              <span data-i18n="project.codezero.pointOneCopy">Brainstorm-style Skills parse GitHub Issues into structured PRD/Plans with acceptance criteria, risks, file scope, tests, and commands.</span>
+              <strong data-i18n="project.codezero.pointOne">PRD planning</strong>
+              <span data-i18n="project.codezero.pointOneCopy">Skills parse GitHub Issues into structured PRDs with acceptance criteria, risks, file scope, tests, and commands.</span>
             </div>
             <div>
-              <strong data-i18n="project.codezero.pointTwo">Build</strong>
-              <span data-i18n="project.codezero.pointTwoCopy">LangGraph orchestrates resumable approval loops while an AI coding agent implements changes inside a persistent task sandbox.</span>
+              <strong data-i18n="project.codezero.pointTwo">Agent build loop</strong>
+              <span data-i18n="project.codezero.pointTwoCopy">LangGraph coordinates resumable approval loops while an AI coding agent implements changes inside a persistent task sandbox.</span>
             </div>
             <div>
-              <strong data-i18n="project.codezero.pointThree">Ship</strong>
-              <span data-i18n="project.codezero.pointThreeCopy">Quality gates run automatically, summarize verification evidence, change notes, and repro steps, then create a reviewable draft PR.</span>
+              <strong data-i18n="project.codezero.pointThree">PR handoff</strong>
+              <span data-i18n="project.codezero.pointThreeCopy">Quality gates run automatically, summarize verification evidence and change notes, then create a reviewable draft PR.</span>
             </div>
             <div>
               <strong data-i18n="project.codezero.pointFour">Repo context</strong>
@@ -368,15 +451,15 @@
         data-section="project"
         data-project="purrpilot"
         data-lazy-project-bg
-        aria-label="Project 02: MeowPilot"
+        aria-label="Project 02: Meow Pilot"
         data-i18n-attr="aria-label:project.purrpilot.aria"
       >
         <article class="project-copy project-copy--purrpilot">
           <span class="project-kicker" data-i18n="project.purrpilot.badge">02 / Desktop AI Pet</span>
-          <h2 class="project-title project-title--purrpilot" data-i18n="project.purrpilot.title">MeowPilot</h2>
+          <h2 class="project-title project-title--purrpilot" data-i18n="project.purrpilot.title">Meow Pilot</h2>
           <p data-i18n="project.purrpilot.copy">A Mac desktop AI pet for everyday companionship, combining text and voice chat, workday interaction, and social growth.</p>
 
-          <div class="purrpilot-features" aria-label="MeowPilot focus" data-i18n-attr="aria-label:project.purrpilot.pointsAria">
+          <div class="purrpilot-features" aria-label="Meow Pilot focus" data-i18n-attr="aria-label:project.purrpilot.pointsAria">
             <div data-feature-code="PET">
               <strong data-i18n="project.purrpilot.pointOne">Personal AI pet</strong>
               <span data-i18n="project.purrpilot.pointOneCopy">Own your AI Agent like raising a pet: it quietly accompanies your desktop and wakes with one click, bringing long-term memory, user preference awareness, and multi-task execution.</span>
@@ -392,7 +475,7 @@
           </div>
         </article>
 
-        <div class="purrpilot-showcase" data-project-showcase aria-label="MeowPilot demos" data-i18n-attr="aria-label:project.purrpilot.visualAria">
+        <div class="purrpilot-showcase" data-project-showcase aria-label="Meow Pilot demos" data-i18n-attr="aria-label:project.purrpilot.visualAria">
           <div class="purrpilot-stage" aria-live="polite">
             <div class="purrpilot-browser">
               <div class="purrpilot-browser__top">
@@ -410,7 +493,7 @@
                 <video
                   data-demo-key="purrpilot-dashboard"
                   data-demo-kind="webm"
-                  aria-label="MeowPilot workspace dashboard, usage, memory, Skill, and settings demo"
+                  aria-label="Meow Pilot workspace dashboard, usage, memory, Skill, and settings demo"
                   data-i18n-attr="aria-label:project.purrpilot.dashboardAlt"
                   muted
                   loop
@@ -431,7 +514,7 @@
                 <video
                   data-demo-key="purrpilot-cards"
                   data-demo-kind="webm"
-                  aria-label="MeowPilot session, local media, and weather card demo"
+                  aria-label="Meow Pilot session, local media, and weather card demo"
                   data-i18n-attr="aria-label:project.purrpilot.cardsAlt"
                   muted
                   loop
@@ -452,7 +535,7 @@
                 <video
                   data-demo-key="purrpilot-skills"
                   data-demo-kind="webm"
-                  aria-label="MeowPilot friend Skill exchange demo"
+                  aria-label="Meow Pilot friend Skill exchange demo"
                   data-i18n-attr="aria-label:project.purrpilot.skillsAlt"
                   muted
                   loop
@@ -473,7 +556,7 @@
                 <video
                   data-demo-key="purrpilot-custom"
                   data-demo-kind="webm"
-                  aria-label="MeowPilot pet styling and custom image studio demo"
+                  aria-label="Meow Pilot pet styling and custom image studio demo"
                   data-i18n-attr="aria-label:project.purrpilot.customAlt"
                   muted
                   loop
@@ -494,7 +577,7 @@
                 <video
                   data-demo-key="purrpilot-quick"
                   data-demo-kind="webm"
-                  aria-label="MeowPilot desktop pet right-click quick menu demo"
+                  aria-label="Meow Pilot desktop pet right-click quick menu demo"
                   data-i18n-attr="aria-label:project.purrpilot.quickAlt"
                   muted
                   loop
@@ -503,7 +586,7 @@
                 ></video>
               </figure>
 
-              <div class="purrpilot-demo-picker" aria-label="MeowPilot demo selector" data-i18n-attr="aria-label:project.purrpilot.selectorAria">
+              <div class="purrpilot-demo-picker" aria-label="Meow Pilot demo selector" data-i18n-attr="aria-label:project.purrpilot.selectorAria">
                 <button class="is-active" type="button" data-showcase-tab="dashboard" data-i18n="project.purrpilot.dashboardLink">Workspace</button>
                 <button type="button" data-showcase-tab="cards" data-i18n="project.purrpilot.cardsLink">A2UI Cards</button>
                 <button type="button" data-showcase-tab="skills" data-i18n="project.purrpilot.skillsLink">Skill Exchange</button>
@@ -520,7 +603,7 @@
         class="project-section project-section--quickjump"
         data-section="project"
         data-project="aichat-quickjump"
-        aria-label="Project 03: AI Chat Jump Click"
+        aria-label="Project 03: AI Chat Quick Jump"
         data-i18n-attr="aria-label:project.quickjump.aria"
       >
         <div class="quickjump-showcase" data-project-showcase>
@@ -574,9 +657,9 @@
 
         <article class="quickjump-copy">
           <span class="project-kicker" data-i18n="project.quickjump.badge">03 / Browser Extension</span>
-          <h2 class="quickjump-title" aria-label="AI Chat Jump Click" data-i18n-attr="aria-label:project.quickjump.title">
+          <h2 class="quickjump-title" aria-label="AI Chat Quick Jump" data-i18n-attr="aria-label:project.quickjump.title">
             <span data-i18n="project.quickjump.titleLineOne">AI Chat</span>
-            <span data-i18n="project.quickjump.titleLineTwo">Jump Click</span>
+            <span data-i18n="project.quickjump.titleLineTwo">Quick Jump</span>
           </h2>
           <p data-i18n="project.quickjump.copy">Preview, jump through, and save your AI conversations.</p>
 
@@ -628,7 +711,7 @@
         class="project-section project-section--dataclean"
         data-section="project"
         data-project="table-data-clean"
-        aria-label="Project 04: Table Data Clean System"
+        aria-label="Project 05: Table DataClean System"
         data-i18n-attr="aria-label:project.dataclean.aria"
       >
         <div class="dataclean-showcase" data-project-showcase>
@@ -646,12 +729,12 @@
                 data-showcase-title-key="project.dataclean.demoWindow"
               >
                 <div class="dataclean-media__loader" data-i18n="project.dataclean.mediaLoading">Loading project image...</div>
-                <div class="dataclean-demo-carousel" aria-label="Table Data Clean System demo carousel" data-i18n-attr="aria-label:project.dataclean.demoCarouselAria">
+                <div class="dataclean-demo-carousel" aria-label="Table DataClean System demo carousel" data-i18n-attr="aria-label:project.dataclean.demoCarouselAria">
 
                   <img
                     src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="
                     data-demo-key="dataclean-home"
-                    alt="Table Data Clean System dark mode home screen"
+                    alt="Table DataClean System dark mode home screen"
                     data-i18n-attr="alt:project.dataclean.demoDarkAlt"
                     loading="lazy"
                     decoding="async"
@@ -659,7 +742,7 @@
                   <img
                     src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="
                     data-demo-key="dataclean-processing"
-                    alt="Table Data Clean System asynchronous processing screen"
+                    alt="Table DataClean System asynchronous processing screen"
                     data-i18n-attr="alt:project.dataclean.processingAlt"
                     loading="lazy"
                     decoding="async"
@@ -667,7 +750,7 @@
                   <img
                     src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="
                     data-demo-key="dataclean-result"
-                    alt="Table Data Clean System result search interface"
+                    alt="Table DataClean System result search interface"
                     data-i18n-attr="alt:project.dataclean.resultAlt"
                     loading="lazy"
                     decoding="async"
@@ -675,7 +758,7 @@
                   <img
                     src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="
                     data-demo-key="dataclean-report"
-                    alt="Table Data Clean System report screen"
+                    alt="Table DataClean System report screen"
                     data-i18n-attr="alt:project.dataclean.reportAlt"
                     loading="lazy"
                     decoding="async"
@@ -724,7 +807,7 @@
                 <img
                   src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="
                   data-demo-key="dataclean-architecture"
-                  alt="Table Data Clean System architecture graph"
+                  alt="Table DataClean System architecture graph"
                   data-i18n-attr="alt:project.dataclean.architectureAlt"
                   loading="lazy"
                   decoding="async"
@@ -735,14 +818,14 @@
         </div>
 
         <article class="dataclean-copy">
-          <span class="project-kicker" data-i18n="project.dataclean.badge">04 / Tabular Data AI Cleaning Platform</span>
-          <h2 class="dataclean-title" aria-label="Table Data Clean System" data-i18n-attr="aria-label:project.dataclean.title">
-            <span data-i18n="project.dataclean.titleLineOne">Table Data</span>
-            <span data-i18n="project.dataclean.titleLineTwo">Clean System</span>
+          <span class="project-kicker" data-i18n="project.dataclean.badge">05 / Tabular Data AI Cleaning Platform</span>
+          <h2 class="dataclean-title" aria-label="Table DataClean System" data-i18n-attr="aria-label:project.dataclean.title">
+            <span data-i18n="project.dataclean.titleLineOne">Table DataClean</span>
+            <span data-i18n="project.dataclean.titleLineTwo">System</span>
           </h2>
           <p data-i18n="project.dataclean.copy">A cleaning platform for messy tables, covering upload, async processing, result review, reports, and model-output visualization.</p>
 
-          <div class="dataclean-features" aria-label="Table Data Clean System focus" data-i18n-attr="aria-label:project.dataclean.featuresAria">
+          <div class="dataclean-features" aria-label="Table DataClean System focus" data-i18n-attr="aria-label:project.dataclean.featuresAria">
             <div data-feature-code="BUILD">
               <strong data-i18n="project.dataclean.featureFullstack">Full-stack product delivery</strong>
               <span data-i18n="project.dataclean.featureFullstackCopy">Built the React workflow and backend APIs around upload, task state, result lookup, and report download.</span>
